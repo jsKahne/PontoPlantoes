@@ -1,0 +1,272 @@
+/* Estilos gerais */
+.container-login {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.img-logo {
+  width: 400px;
+  margin-bottom: 50px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  background-color: #1e1e1e;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  max-width: 250px;
+  width: 100%;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #6cbc84;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #2c2c2c;
+  color: #fff;
+}
+
+.login-form input::placeholder {
+  color: #888;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #6cbc84;
+  border: none;
+  color: #1e1e1e;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #258b44;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .img-logo {
+    padding-top: 30px;
+    width: 270px;
+    margin-bottom: 50px;
+  }
+}
+
+.reset-password-form {
+  background-color: #1e1e1e;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  max-width: 250px;
+  width: 100%;
+}
+
+.reset-password-form h2 {
+  margin-bottom: 20px;
+  color: #6cbc84;
+}
+
+.reset-password-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #2c2c2c;
+  color: #fff;
+}
+
+.reset-password-form input::placeholder {
+  color: #888;
+}
+
+.reset-password-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #6cbc84;
+  border: none;
+  color: #1e1e1e;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.reset-password-form button:hover {
+  background-color: #258b44;
+}
+
+.change-password-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: #6cbc84;
+  margin-bottom: 10px;
+}
+
+.change-password-notice p {
+  margin-bottom: 10px;
+}
+
+.change-password-notice button {
+  background-color: #6cbc84;
+  color: #1e1e1e;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.change-password-notice button:hover {
+  background-color: #258b44;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.modal h2 {
+  color: #6cbc84;
+}
+
+.modal p {
+  color: #6cbc84;
+  margin-bottom: 20px;
+}
+
+.modal button {
+  background-color: #6cbc84;
+  color: #1e1e1e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.modal button:hover {
+  background-color: #258b44;
+}
+
+.img-atencao {
+  width: 60px;
+}
+
+.mensage-aviso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mensage-aviso img {
+  margin-bottom: 20px;
+}
+
+.mensage-aviso h2 {
+  color: #6cbc84;
+  margin-bottom: 10px;
+}
+
+.mensage-aviso h3 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.mensage-aviso button {
+  background-color: #6cbc84;
+  color: #1e1e1e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.mensage-aviso button:hover {
+  background-color: #258b44;
+}
+
+@media (max-width: 299px) {
+  .img-logo {
+    width: 200px;
+    margin-bottom: 30px;
+  }
+
+  .login-form,
+  .reset-password-form {
+    padding: 15px 20px;
+    max-width: 200px;
+  }
+
+  .modal {
+    padding: 15px 20px;
+  }
+
+  .modal button {
+    padding: 8px 16px;
+  }
+
+  .mensage-aviso img {
+    width: 50px;
+  }
+}

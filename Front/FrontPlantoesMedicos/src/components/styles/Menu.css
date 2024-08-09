@@ -1,0 +1,51 @@
+/* src/Menu.css */
+.menu-container {
+    background-color: #333;
+    padding: -1px;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 0px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+  }
+  
+  .menu-list li {
+    margin-right: 10px;
+  }
+  
+
+  
+  .menu-list button:hover {
+    text-decoration: underline;
+  }
+
+  .menu-list button {
+    background-color: #444;
+    width: 100%;
+    margin: 2px;
+    border:none;
+    color: #FFF;
+    padding: 4px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .menu-list button:hover {
+    background-color: #6cbc84; /* Cor de fundo verde mais escuro */
+    transform: scale(1.0); /* Aumenta o tamanho do botão */
+    text-decoration: none;
+  }
+
+  
+  

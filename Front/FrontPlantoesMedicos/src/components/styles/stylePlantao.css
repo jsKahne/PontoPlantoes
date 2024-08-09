@@ -1,0 +1,889 @@
+/* Estilos gerais */
+
+h1, h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
+h3{
+  color: #ffffff;
+}
+
+.header-container{
+  grid-area: header;
+  height: 100px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #444;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+  background-color: #444;
+  color:#fff;
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+}
+
+.img-profile{
+  width: 170px;
+  border-right: 1px solid #6cbc84;
+  padding-right: 10px;
+}
+
+.logout{
+  border: none;
+  background: none;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.img-logout {
+  width: 20px; /* Ajuste o tamanho conforme necessário */
+  height: 20px; /* Ajuste o tamanho conforme necessário */
+  margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+  font-size: 20px;
+}
+
+.logout :hover{
+  width: 30px;
+  cursor: pointer;
+}
+.svg{
+  font-size: 20px;
+  color:#6cbc84 ;
+}
+
+.header-dados{
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  line-height: 24px;
+}
+
+.header-span{
+  font-size: 14px;
+  color:#6cbc84;
+}
+
+.header-strong{
+  font-size: 18px;
+  color: white;
+}
+
+.div-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.list-Plantoes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+  scrollbar-width: thin; /* Para navegadores compatíveis */
+  scrollbar-color: #333 #6cbc84; /* Cor da barra de rolagem (polegar e trilho) */
+}
+
+.list-Plantoes::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+}
+
+.list-Plantoes::-webkit-scrollbar-thumb {
+  background-color: #333; /* Cor do polegar da barra de rolagem */
+  border-radius: 4px; /* Bordas arredondadas para o polegar */
+}
+
+.list-Plantoes::-webkit-scrollbar-track {
+  background-color: #6cbc84; /* Cor do trilho da barra de rolagem */
+  border-radius: 4px; /* Bordas arredondadas para o trilho */
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  background-color: #444;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #444;
+}
+
+/* Estilos para os checkboxes */
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Adicionado para expandir o label */
+  text-align: center; /* Centraliza o texto */
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 16px; /* Diminuído de 20px */
+  height: 16px; /* Diminuído de 20px */
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Garante que a bolinha não diminua de tamanho */
+}
+
+input[type="checkbox"]:checked + .checkmark {
+  background-color: #6cbc84;
+}
+
+.plantao-info {
+  flex-grow: 1;
+  text-align: center; /* Centraliza o texto dentro do espaço disponível */
+}
+
+.selected-plantao {
+  background-color: #333;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.selected-plantao h2 {
+  color: #6cbc84;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.selected-plantao p {
+  margin: 5px 0;
+}
+
+.plantao-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #444;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.plantao-status span {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.ok-button {
+  background-color: #6cbc84;
+  width: 100%;
+  border: none;
+  color: #222;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ok-button:hover {
+  background-color: #6cbc84;
+}
+
+/* Estilos para os botões de ação */
+.action-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.action-buttons button {
+  background-color: #6cbc84;
+  border: none;
+  color: #222;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+.add-plantao-container {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-plantao {
+  color: #6cbc84;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+}
+
+.action-buttons button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+/* Estilos para o modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #6cbc84;
+}
+
+.input-container {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.input-container input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: none;
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.confirm-button {
+  background-color: #6cbc84;
+  border: none;
+  color: #222;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.confirm-button:hover {
+  background-color: #6cbc84;
+}
+
+.input-container {
+  margin-bottom: 10px;
+  position: relative; /* Adicionado para posicionamento relativo */
+}
+
+.input-container label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+  text-decoration: underline;
+  margin-top: 5px;
+  display: block; /* Torna visível quando há erro */
+}
+
+.line{
+  width: 70%;
+  border-bottom: 1.5px solid #6cbc84;
+}
+
+.line2{
+  width: 100%;
+  border-bottom: 1.5px solid #6cbc84;
+}
+
+.card-plantao-selecionado {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 30%;
+  padding: 20px;
+  background-color: #444;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+.card-plantao-selecionado h2{
+  color: #ffffff;
+
+}
+.card-plantao-selecionado:before {
+  background-color: transparent;
+}
+
+.card-plantao-selecionado::after {
+  background-color: none;
+}
+.conteudo-card h3{
+ color:#fff;
+ font-size: 18px;
+}
+.no-plantoes {
+  text-align: center;
+  color: #a09898;
+  font-size: 26px;
+  margin-top: 20px;
+}
+.container-plant {
+  position: relative;
+}
+
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+  color: #fff;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-content2 {
+  padding: 40px;
+  overflow-y: auto;
+}
+@media (max-height: 868px) {
+  .modal-content2 {
+    max-height: calc(100vh - 20px); /* Ajustar conforme necessário */
+  }
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  margin-left: 40px;
+  padding-top: 20px;
+  padding-bottom:20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirm-button, .cancel-button {
+  padding: 12px 24px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.confirm-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.confirm-button:hover, .cancel-button:hover {
+  transform: translateY(-3px);
+}
+
+.modal-card p{
+  margin:5px;
+}
+
+.modal-card input{
+  width: 70%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+}
+
+
+.modal-card input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-card .input-group {
+  display: flex;
+  align-items: center;
+}
+
+.modal-card .input-group > p {
+  margin-right: 10px;
+}
+
+.label-add{
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  align-items: flex-start;
+}
+
+
+
+
+
+
+/* Estilo para o select customizado */
+.custom-select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+}
+
+.custom-select option {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Estilo para o menu */
+.menu {
+  position: absolute;
+  top: calc(18% + 10px); /* Ajuste conforme necessário */
+  left: 0; /* Ajuste conforme necessário */
+  width: 200px; /* Largura do menu */
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu li:hover {
+  background-color: #555;
+}
+
+
+@media (max-width: 1135px){
+  .no-plantoes {
+    font-size: 22px;
+  }
+  .card-plantao-selecionado {
+    width: 70%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card-plantao-selecionado h3 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1024px) {
+  .no-plantoes {
+    font-size: 22px;
+  }
+  .card-plantao-selecionado {
+    width: 70%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card-plantao-selecionado h3 {
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  h3{
+    font-size: 14px;
+  }
+  .header-container {
+    padding: 0 20px;
+    font-size: 13px;
+  }
+
+  .list-Plantoes {
+    padding: 5px 0;
+  }
+
+  li {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .selected-plantao {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .card-plantao-selecionado {
+    width: 80%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .no-plantoes {
+    font-size: 18px;
+  }
+}
+.menu {
+  width: 80%; /* Em telas menores, ocupa 80% da largura */
+  left: 10%;
+}
+
+@media (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.5em;
+  }
+  h3{
+    font-size: 12px;
+  }
+
+  .header-container {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .img-profile {
+    width: 120px;
+  }
+
+  .list-Plantoes {
+    padding: 5px 0; 
+  }
+
+  li {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .selected-plantao {
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .card-plantao-selecionado {
+    width: 90%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card-plantao-selecionado h3 {
+    font-size: 14px;
+  }
+
+  .no-plantoes {
+    font-size: 16px;
+  }
+
+  .modal-card {
+    max-width: 90%;
+  }
+  .modal-logo {
+    width: 80px;
+  }
+  .menu {
+    width: 100%; /* Em telas muito pequenas, ocupa 100% da largura */
+    left: 0;
+    top: calc(100% + 10px); /* Ajuste conforme necessário */
+  }
+  .menu li {
+    padding: 10px;
+    font-size: 14px; /* Ajuste conforme necessário */
+  }
+}
+
+@media (max-width: 379px) {
+  h1, h2 {
+    font-size: 1.2em;
+  }
+
+  h3{
+    font-size: 10px;
+  }
+
+  .header-container {
+    padding: 0 5px;
+    font-size: 11px;
+  }
+
+  .img-profile {
+    width: 120px;
+  }
+
+  .list-Plantoes {
+    padding: 3px 0;
+  }
+
+  .ok-button {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  li {
+    width: 70%;
+    font-size: 10px;
+  }
+
+  .selected-plantao {
+    padding: 5px;
+    margin-top: 5px;
+  }
+
+  .card-plantao-selecionado {
+    width: 90%;
+    margin-top: 10px;
+    font-size: 13px;
+    padding: 5px;
+  }
+
+  .card-plantao-selecionado h3 {
+    font-size: 13px;
+  }
+
+  .action-buttons button {
+    width: 130px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .no-plantoes {
+    font-size: 14px;
+  }
+  .modal-header h3 {
+    font-size: 1.2em;
+  }
+
+  .modal-body p {
+    font-size: 0.9em;
+  }
+
+  .confirm-button, .cancel-button {
+    padding: 8px 16px;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 339px) {
+  h1, h2 {
+    font-size: 1em;
+  }
+
+  .header-container {
+    padding: 0 3px;
+  }
+
+  .list-Plantoes {
+    padding: 2px 0;
+  }
+
+  li {
+    width: 70%;
+    font-size: 9px;
+  }
+
+  .selected-plantao {
+    padding: 3px;
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  .card-plantao-selecionado {
+    width: 90%;
+    font-size: 11px;
+    margin-top: 7px;
+    padding: 3px;
+  }
+
+  .card-plantao-selecionado h3 {
+    font-size: 12px;
+  }
+
+  .ok-button {
+    width: 100%;
+    padding: 5px 12px;
+    display: inline-block;
+    font-size: 11px;
+  }
+
+  .action-buttons button {
+    padding: 5px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+
+  .no-plantoes {
+    font-size: 10px;
+  }
+
+  .context-menu {
+    width: 95%;
+    left: 2.5%;
+  }
+}
+
+@media (max-width: 299px) {
+  h1, h2 {
+    font-size: 0.8em;
+  }
+
+  .header-container {
+    padding: 0 2px;
+    font-size: 10px;
+  }
+
+  .header-container span {
+    font-size: 9px;
+    margin-bottom: -10px;
+  }
+
+  .img-profile {
+    width: 80px;
+    height: 50px;
+  }
+
+  .list-Plantoes {
+    padding: 1px 0;
+  }
+
+  li {
+    width: 70%;
+    font-size: 10px;
+  }
+
+  .selected-plantao {
+    padding: 2px;
+    margin-top: 2px;
+  }
+
+  .card-plantao-selecionado {
+    width: 90%;
+    margin-top: 50px;
+    padding: 5px;
+  }
+
+  .action-buttons button {
+    margin: 5px;
+  }
+
+  .context-menu {
+    width: 100%;
+    left: 0;
+  }
+}
+
+
+
+

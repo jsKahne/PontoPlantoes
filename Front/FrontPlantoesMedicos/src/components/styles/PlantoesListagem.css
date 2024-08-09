@@ -1,0 +1,162 @@
+/* src/components/UserList.css */
+.user-list {
+    padding: 20px;
+  }
+  
+  .user-list h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .user-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .user-list li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .user-list p {
+    margin: 5px 0;
+  }
+  .user-list label {
+    margin: 5px 0;
+    color: #FFF;
+    padding: 10px 20px;
+  }  
+
+  .user-list div {
+    margin: 5px 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+  }  
+
+  .user-list input {
+    margin: 5px 0;
+    padding: 10px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }  
+
+  .user-list button {
+    background-color: #6cbc84;
+    border: none;
+    color: #222;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }  
+
+  .user-list button:hover {
+    background-color: #3f8b56; /* Cor de fundo verde mais escuro */
+    transform: scale(1.0); /* Aumenta o tamanho do botão */
+    text-decoration: none;
+    marging-left: 5px;
+  }  
+  
+
+  .user-list tr {
+    margin: 5px 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+  }    
+
+  .user-list th, td {
+    border: 1px solid #ddd;
+    padding: 2px;
+    text-align: center; /* Alinha o texto no centro */
+
+  }   
+
+  .user-list table {
+    width: 30%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+  /* Adicione esta regra ao seu arquivo CSS */
+.card1 {
+  background-color: black;
+  width: 250px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  box-shadow: 2px 2px 19px;
+  margin: 10px; /* Espaço entre os cards */
+  color: white; /* Cor do texto dentro do card */
+  padding: 10px;
+}
+
+.card1::before {
+  content: "";
+  position: absolute;
+  z-index: -19;
+  width: 262px;
+  height: 312px;
+  margin: auto;
+  background: rgb(4,0,255);
+  background: linear-gradient(135deg, rgba(4,0,255,1) 0%, rgba(136,0,255,1) 35%, rgba(209,0,255,1) 100%);
+  border-radius: 6px;
+}
+
+.card1::after {
+  content: "";
+  position: absolute;
+  z-index: -19;
+  width: 262px;
+  height: 312px;
+  margin: auto;
+  background: rgb(4,0,255);
+  background: linear-gradient(135deg, rgba(4,0,255,1) 0%, rgba(136,0,255,1) 35%, rgba(209,0,255,1) 100%);
+  border-radius: 6px;
+  filter: blur(20px);
+  transition: 2s;
+}
+
+.card1:hover::after {
+  animation: cardafter 2.5s infinite forwards;
+}
+
+@keyframes cardafter {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Container para exibir os cards em um layout flexível */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centraliza os cards horizontalmente */
+}
+
+.titleCard h2{
+  display: flex;
+  font-size: 20px;
+}
+
+

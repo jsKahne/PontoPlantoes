@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api/config';
 import './styles/header.css'; // Importando o arquivo CSS
-import logout from './styles/img/logout.svg';
 import logo from './styles/img/logo-normal-verde.svg';
+import configuracoes from './styles/img/gear-svgrepo-com.svg';
 import Menu from './Menu.js'
 
 const Header = () => {
@@ -32,21 +32,7 @@ const Header = () => {
         }
     };
   
-    const handleLogout = async () => {
-        try {
-            const token = sessionStorage.getItem('token');
-            await api.post('/api/logout', {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-    
-            sessionStorage.removeItem('token');
-            window.location.href = '/login'; // Redireciona para a página de login
-        } catch (error) {
-            console.error('Erro ao fazer logout:', error);
-        }
-    };
+   
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -62,20 +48,28 @@ const Header = () => {
               alt="Logo"
               onClick={toggleMenu} // Alterna o estado do menu ao clicar no logo
             />
-  
+             
             <div className='header-dados' onClick={toggleMenu}>
               <span className='header-span'>Bem-Vindo</span>
               <strong>{userName}</strong>
             </div>
             
           </div>
-          <button className="logout" onClick={handleLogout}>
-            <img src={logout} className='img-logout' alt="logout" />
-          </button>
+          
+          <div className='configuracao-engrenagem'>
+          <img
+             src={configuracoes}
+             className= 'logo-engrenagem' 
+             alt="Engrenagem"
+              onClick={toggleMenu} 
+             />
+            </div>
         </div>
+        
         {menuOpen && (
           <div className="menu-container">
             <Menu />
+          
           </div>
         )}
       </div>

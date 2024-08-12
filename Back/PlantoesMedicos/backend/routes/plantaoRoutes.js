@@ -24,6 +24,6 @@ router.post('/logout', ensureAuth, logout);
 router.get('/add_plantao_dados', ensureAuth, getDadosAdicionarPlantao);
 router.post('/adicionar_plantao', ensureAuth, adicionarPlantao);
 router.get('/obter_escalas', ensureAuth, obterEscalasAtivas);
-router.post('/register', register); 
+router.post('/register', ensureAuth, register); 
 
 module.exports = router;

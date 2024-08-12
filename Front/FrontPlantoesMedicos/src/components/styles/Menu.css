@@ -1,51 +1,64 @@
 /* src/Menu.css */
 .menu-container {
-    background-color: #333;
-    padding: -1px;
-  }
-  
-  .menu-list {
-    list-style: none;
-    padding: 0px;
-    margin: 5px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  background-color: #333;   
+  padding: -1px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
 
-  }
-  
-  .menu-list li {
-    margin-right: 10px;
-  }
-  
+.menu-list {
+  list-style: none;
 
-  
-  .menu-list button:hover {
-    text-decoration: underline;
-  }
+  padding: 0px;
+  margin: 5px;
+  display: flex;
+  border-radius: 5px;
+  background-color: #444;
+  flex-direction: column;
+  position: fixed; /* Fixar o menu na posição especificada */
+  top: 100px; /* Posiciona a 20px do topo */
+  width: 350px;
 
-  .menu-list button {
-    background-color: #444;
-    width: 100%;
-    margin: 2px;
-    border:none;
-    color: #FFF;
-    padding: 4px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 20px;
-    white-space: nowrap;
-    font-family: 'Roboto', sans-serif;
-  }
+  right: 10px; /* Posiciona a 20px do lado direito da tela */
+  z-index: 10;
 
-  .menu-list button:hover {
-    background-color: #6cbc84; /* Cor de fundo verde mais escuro */
-    transform: scale(1.0); /* Aumenta o tamanho do botão */
-    text-decoration: none;
-  }
+}
 
-  
-  
+.menu-list li {
+  margin-right: 10px;
+}
+
+
+
+.menu-list button:hover {
+  text-decoration: underline;
+}
+
+.menu-list button {
+  width: 100%;
+  margin: 2px;
+  background: none;
+  border: none;
+  color: #FFF;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+}
+
+
+.line3{
+
+width: 100%;
+border-bottom: 2px solid #6cbc84;
+border-radius: 2px;
+
+}
+

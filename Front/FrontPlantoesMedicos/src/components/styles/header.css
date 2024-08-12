@@ -1,149 +1,169 @@
 .container-plant {
-    position: relative;
-  }
+  position: relative;
+}
 
-  .header-container{
-    grid-area: header;
-    height: 100px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #444;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 60px;
-    background-color: #444;
-    color:#fff;
-  }
+.header-container{
+  grid-area: header;
+  height: 100px;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #6cbc84;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+  background-color: #444;
+  color:#fff;
+}
 
-  .profile{
-    display: flex;
-    align-items: center;
+.profile{
+  display: flex;
+  align-items: center;
+}
+
+.configuracoes{
+  width:20px;
+  height:20px;
+  cursor: pointer;
+}
+
+
+.img-profile{
+  width: 170px;
+  border-right: 1px solid #6cbc84;
+  padding-right: 10px;
+}
+
+
+.header-dados{
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  line-height: 24px;
+}
+.header-span{
+  font-size: 14px;
+  color:#6cbc84;
+}
+
+.header-strong{
+  font-size: 18px;
+  color: white;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.logout{
+  border: none;
+  background: none;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.configuracao-engrenagem{
+  display: flex;
+  align-items: center;
+
+}
+.logo-engrenagem{
+  padding: 0px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  left: 950px;
   }
   
-  .img-profile{
-    width: 170px;
-    border-right: 1px solid #6cbc84;
-    padding-right: 10px;
-  }
+.img-logout {
+  width: 20px; 
+  height: 20px; 
+  margin-right: 5px; 
+  font-size: 20px;
+}
 
-  .header-dados{
-    display: flex;
-    flex-direction: column;
-    margin-left: 16px;
-    line-height: 24px;
-  }
+.logout :hover{
+  width: 30px;
+  cursor: pointer;
+}
 
-  .header-span{
+@media (max-width: 768px) {
+
+  h3{
     font-size: 14px;
-    color:#6cbc84;
   }
-  
-  .header-strong{
-    font-size: 18px;
-    color: white;
+  .header-container {
+    padding: 0 20px;
+    font-size: 13px;
   }
-  .modal-header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  .logout{
-    border: none;
-    background: none;
-    padding: 10px;
-    margin-right: 20px;
-  }
-  
-  .img-logout {
-    width: 20px; 
-    height: 20px; 
-    margin-right: 5px; 
-    font-size: 20px;
-  }
-  
-  .logout :hover{
-    width: 30px;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-
-    h3{
-      font-size: 14px;
-    }
-    .header-container {
-      padding: 0 20px;
-      font-size: 13px;
-    }
 }
-  
-  @media (max-width: 480px) {
-    h1, h2 {
-      font-size: 1.5em;
-    }
-    h3{
-      font-size: 12px;
-    }
-  
-    .header-container {
-      padding: 0 10px;
-      font-size: 12px;
-    }
-    .img-profile {
-        width: 120px;
-      }
-}
-  
-  
-  @media (max-width: 379px) {
-    h1, h2 {
-      font-size: 1.2em;
-    }
-  
-    h3{
-      font-size: 10px;
-    }
-    .header-container {
-        padding: 0 5px;
-        font-size: 11px;
-      }
-      .modal-header h3 {
-        font-size: 1.2em;
-      }
 
-    .img-profile {
+@media (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.5em;
+  }
+  h3{
+    font-size: 12px;
+  }
+
+  .header-container {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .img-profile {
       width: 120px;
     }
-  
+}
+
+
+@media (max-width: 379px) {
+  h1, h2 {
+    font-size: 1.2em;
   }
-  
-  @media (max-width: 339px) {
-    h1, h2 {
-      font-size: 1em;
+
+  h3{
+    font-size: 10px;
+  }
+  .header-container {
+      padding: 0 5px;
+      font-size: 11px;
+    }
+    .modal-header h3 {
+      font-size: 1.2em;
+    }
+
+  .img-profile {
+    width: 120px;
+  }
+
+}
+
+@media (max-width: 339px) {
+  h1, h2 {
+    font-size: 1em;
+  }
+
+  .header-container {
+    padding: 0 3px;
+  }}
+
+@media (max-width: 299px) {
+  h1, h2 {
+    font-size: 0.8em;
+  }
+
+  .header-container {
+      padding: 0 2px;
+      font-size: 10px;
     }
   
-    .header-container {
-      padding: 0 3px;
-    }}
-  
-  @media (max-width: 299px) {
-    h1, h2 {
-      font-size: 0.8em;
+    .header-container span {
+      font-size: 9px;
+      margin-bottom: -10px;
     }
-  
-    .header-container {
-        padding: 0 2px;
-        font-size: 10px;
-      }
-    
-      .header-container span {
-        font-size: 9px;
-        margin-bottom: -10px;
-      }
 
-    .img-profile {
-        width: 80px;
-        height: 50px;
-      }
+  .img-profile {
+      width: 80px;
+      height: 50px;
+    }
 
-  }
+}

@@ -8,7 +8,6 @@ const Register = () => {
   const [cd_pessoa_fisica, setCd_pessoa_fisica] = useState('');
   const [nm_completo, setNm_completo] = useState('');
   const [nm_usuario, setNm_usuario] = useState('');
-  const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -19,8 +18,7 @@ const Register = () => {
       const response = await api.post('/api/register', {
         cd_pessoa_fisica,
         nm_completo,
-        nm_usuario,
-        ds_senha: senha, // Corrigido o nome do campo
+        nm_usuario
       });
 
       if (response.status === 201) {
@@ -76,16 +74,6 @@ const Register = () => {
             <span>Usuário Tasy</span>
           </label>
 
-          <label>
-            <input
-              required
-              type="password"
-              className="input"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
-            <span>Senha</span>
-          </label>
 
           <button type="submit" className="submit"><strong>Registrar</strong></button>
 

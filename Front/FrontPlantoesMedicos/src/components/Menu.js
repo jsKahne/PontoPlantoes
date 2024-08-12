@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Menu.css';
+import logout from './styles/img/logout.svg';
 import { jwtDecode } from 'jwt-decode';
+import api from '../api/config';
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -29,19 +31,45 @@ const Menu = () => {
   const handleNavigation = (path) => {
     navigate(path);
   };
+  const handleLogout = async () => {
+    try {
+        const token = sessionStorage.getItem('token');
+        await api.post('/api/logout', {}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        sessionStorage.removeItem('token');
+        window.location.href = '/login'; // Redireciona para a página de login
+    } catch (error) {
+        console.error('Erro ao fazer logout:', error);
+    }
+};
 
   return (
     <div className="menu-list">
-      <button className="button" onClick={() => handleNavigation('/Plantoes')}>Plantões do Dia</button>
-      <button className="button" onClick={() => handleNavigation('/ConsultaPlantoes')}>Consulta Plantões</button>
+      <button className="button" onClick={() => handleNavigation('/Plantoes')}>Plantões do dia</button>
+      <div className="line3"></div>
+      <button className="button" onClick={() => handleNavigation('/ConsultaPlantoes')}>Consultar plantões</button>
+      <div className="line3"></div>
       
       {isAdmin && (
         <>
-          <button className="button" onClick={() => handleNavigation('/ConsultaPlantoesAdmin')}>Consultar Plantões Admin</button>
-          <button className="button" onClick={() => handleNavigation('/registerfhsl')}>Registrar Usuário</button>
-          <button className="button" onClick={() => handleNavigation('/admin')}>Admin Page</button>
+          <button className="button" onClick={() => handleNavigation('/ConsultaPlantoesAdmin')}>Gerenciar plantões</button>
+      <div className="line3"></div>
+
+          <button className="button" onClick={() => handleNavigation('/registerfhsl')}>Registrar usuário</button>
+      <div className="line3"></div>
+
+          <button className="button" onClick={() => handleNavigation('/admin')}>Painel administrador</button>
+      <div className="line3"></div>
+
         </>
       )}
+        <button className="logout" onClick={handleLogout}>
+            <img src={logout} className='img-logout' alt="logout" />
+          </button>
     </div>
   );
 };

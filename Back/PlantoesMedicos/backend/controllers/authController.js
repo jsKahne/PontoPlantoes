@@ -8,7 +8,6 @@ async function login(req, res) {
   if (!username || !password) {
     return res.status(400).json({ message: "Informe usuário e senha." });
   }
-
   let connection;
   try {
     connection = await getConnection();
@@ -21,6 +20,7 @@ async function login(req, res) {
       await connection.close();
       return res.status(401).json({ message: "Usuário não encontrado." });
     }
+
     const user = result.rows[0];
     const passwordHash = user[2];
     const resetPassword = user[3];
@@ -42,6 +42,7 @@ async function login(req, res) {
       username: user[1],
       isAdmin: user[4] === 1, // Converte para booleano
     };
+
     const token = jwt.sign(payload, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
 
     await connection.close();

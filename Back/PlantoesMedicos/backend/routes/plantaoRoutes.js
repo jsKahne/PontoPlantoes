@@ -12,6 +12,10 @@ const {
     getDadosAdicionarPlantao, 
     register 
 } = require('../controllers/plantaoController.js');
+const{
+    getUsers,
+    resetPassword
+} = require('../controllers/admin.js');
 
 const router = express.Router();
 
@@ -25,5 +29,6 @@ router.get('/add_plantao_dados', ensureAuth, getDadosAdicionarPlantao);
 router.post('/adicionar_plantao', ensureAuth, adicionarPlantao);
 router.get('/obter_escalas', ensureAuth, obterEscalasAtivas);
 router.post('/register', ensureAuth, register); 
-
+router.get('/users', ensureAuth, getUsers);  
+router.post('/reset-password', ensureAuth, resetPassword);  
 module.exports = router;

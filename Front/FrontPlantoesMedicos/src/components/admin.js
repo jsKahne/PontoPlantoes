@@ -2,8 +2,20 @@
 import React from 'react';
 import Header from './header.js';
 import './styles/admin.css';
+import { LuUserPlus2 } from "react-icons/lu";
+import { LuUser2 } from "react-icons/lu";
+import { FaRegListAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 
 const Principal = () => {
+
+    const navigate = useNavigate();
+
+const handleNavigation = (path) => {
+    navigate(path);
+
+  };
 
 return(
 <div>
@@ -11,10 +23,27 @@ return(
 <div className='container'>
 
 
-</div>  
+    <div className='title-adm'>
+        <h1>Administrador</h1>
+        <div className='line1'></div>
+    </div>
+    <div className='container-menu' >
+    <div className='card-admin' onClick={() => handleNavigation('/users')}>
+        <LuUser2 className='cad-user'/>
+        <p>Usuários</p>
+    </div>
+    <div className='card-admin'  onClick={() => handleNavigation('/registerfhsl')}>
+        <LuUserPlus2 className='cad-user'/>
+        <p>Cadastro de usuário</p>
+    </div>
+    <div className='card-admin'>
+        <FaRegListAlt className='cad-user'/>
+        <p>Listar Plantões</p>
+    </div>
+  
 
-   <h1>Administrador</h1>;
-                        
+    </div>
+     </div>                   
 </div>
      
     )

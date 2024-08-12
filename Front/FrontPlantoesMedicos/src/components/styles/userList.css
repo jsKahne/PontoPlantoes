@@ -1,0 +1,123 @@
+.user-list-container {
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: white;
+  }
+  tbody{
+    color:white
+  }
+  .label {
+    position: relative;
+    display: block;
+    width: 500px;
+    display: flex;
+    border-radius: 6px;
+    border: 2px solid #6cbc84;
+    padding: 15px 8px 15px 10px;
+    text-align: left;
+    margin-bottom: 10px;
+    .icon {
+      position: absolute;
+      top: 53%;
+      right: 0;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      color: #6cbc84;
+    }
+  
+    .input {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+    }
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .user-table th, .user-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .user-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .user-table tr:hover {
+    background-color: white;
+    color:black;
+    cursor: pointer;
+  }
+  
+  .user-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-details {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-details h3 {
+    margin-bottom: 20px;
+  }
+  
+  .user-details p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .reset-button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .reset-button:hover {
+    background-color: #6cbc84;
+  }
+  
+  .close-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #5a6268;
+  }
+  

@@ -19,7 +19,7 @@
   position: fixed; /* Fixar o menu na posição especificada */
   top: 100px; /* Posiciona a 20px do topo */
   width: 350px;
-
+  align-items: center;
   right: 10px; /* Posiciona a 20px do lado direito da tela */
   z-index: 10;
 
@@ -49,16 +49,14 @@
   white-space: nowrap;
   font-family: 'Roboto', sans-serif;
   display: flex;
-  align-items: right;
+  align-items: center;
   justify-content: center;
 }
 
 
 .line3{
 
-width: 100%;
+width: 95%;
 border-bottom: 2px solid #6cbc84;
-border-radius: 2px;
-
+border-radius: 2px; 
 }
-

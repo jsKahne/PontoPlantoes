@@ -1,5 +1,59 @@
-*{
-    margin:0;
-    padding: 0;
+.title-adm{
+margin-top: 20px;
+font-size: 18px;
+display: flex;
+align-items: center;
+flex-direction: column;
 
 }
+
+.line1{
+    justify-content: center;
+    width:15%;
+    border-bottom: solid 2px #6cbc84;
+    margin-top: -25px;
+}
+
+.title h1{
+    font-size: 32px;
+    margin-top: 20px;
+
+}
+
+.container-menu{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #333;
+    justify-content: center;
+}
+
+.card-admin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    width: 150px;
+    height: 130px;
+    border: 1px solid #6cbc84;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+.card-admin:hover{
+    border: 2px solid #6cbc84;
+}
+
+.card-admin p{
+    font-size: 15px;
+    color: white;
+    
+}
+
+.cad-user{
+    font-size: 50px;
+    color: #6cbc84;
+}
+

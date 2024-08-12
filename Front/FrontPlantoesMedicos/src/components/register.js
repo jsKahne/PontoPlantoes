@@ -3,7 +3,7 @@ import './styles/styleRegister.css';
 import Header from './header.js';
 import api from '../api/config'; // Certifique-se de que o caminho está correto
 import logoMin from './styles/img/icon-512.png';
-
+//teste
 const Register = () => {
   const [cd_pessoa_fisica, setCd_pessoa_fisica] = useState('');
   const [nm_completo, setNm_completo] = useState('');

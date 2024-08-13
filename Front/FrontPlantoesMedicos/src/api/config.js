@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   //baseURL: 'http://plantoes.fhsl.org.br:3000',  // Altere para a URL do seu servidor backend
-  baseURL: 'http://localhost:3000',  // Altere para a URL do seu servidor backend
+  baseURL: 'http://10.2.1.107:3000',  // Altere para a URL do seu servidor backend
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     //config.headers['Access-Control-Allow-Origin'] = 'http://plantoes.fhsl.org.br';
-    config.headers['Access-Control-Allow-Origin'] = 'http://localhost';
+    config.headers['Access-Control-Allow-Origin'] = 'http://10.2.1.107:3000';
     return config;
   },
   (error) => {

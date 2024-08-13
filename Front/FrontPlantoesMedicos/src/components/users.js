@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api/config';
 import Header from './header.js';
-import './styles/userList.css'; // Importe o arquivo CSS para estilização
-
+import './styles/userList.css'; 
+import logoMin from './styles/img/icon-512.png';
 function UserList() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');

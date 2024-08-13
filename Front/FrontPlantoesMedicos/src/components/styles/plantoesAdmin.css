@@ -1,126 +1,377 @@
-.Container-geral{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-
-
+.title {
+  font-size: 32px;
+  margin: 15px;
+  text-align: center;
 }
-.plantoes-admin {
-    display: flex;
-    padding: 20px;
-    width: 70%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .card1 {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    width: 300px;
-    cursor: pointer;
-  }
-  
-  .titleCard h2 {
-    margin: 0;
-    font-size: 18px;
-  }
-  
-  .conteudoCard p {
-    margin: 5px 0;
-  }
-  
-  .plantao-details-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .plantao-details {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 400px;
-  }
-  
-  .plantao-details input {
-    width: 100%;
-    margin-top: 5px;
-  }
-  
-  .buttons {
-    margin-top: 10px;
-  }
-  
-  .update-button,
-  .close-button {
-    padding: 10px;
-    margin: 5px;
-  }
-  
-  .update-button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .close-button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .update-button:hover {
-    background-color: #218838;
-  }
-  
-  .close-button:hover {
-    background-color: #c82333;
-  }
-  
-  button {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    opacity: 0.9;
-  }
-  
-  /* Adicione isso ao arquivo CSS existente */
 
-input[type="text"] {
-    padding: 8px;
-    margin: 8px 0;
-    width: 100%;
-    box-sizing: border-box;
+.line-admin {
+  width: 20%;
+  border-bottom: solid 2px #6cbc84;
+  margin: -10px auto 40px;
+}
+
+.usuarios button {
+  width: 150px;
+  height: 40px;
+  font-size: 10px;
+  margin-left: 20px;
+  background-color: #333;
+  border: solid 1px #6cbc84;
+  color: white;
+  border-radius: 5px;
+}
+
+.usuarios button:hover {
+  background-color: #6cbc84;
+}
+
+.pesquisa {
+  width: 87%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.plantoes-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plantao-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.plantao-details {
+  background: #444;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  color: white;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.plantao-details input {
+  width: 100%;
+  margin-top: 5px;
+  background-color: #333;
+  border: 1px solid #6cbc84;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.update-button {
+  background-color: #6cbc84;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.update-button:hover {
+  background-color: #5ca273;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: #6cbc84;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  opacity: 0.8;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.usuarios-encontrados {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.usuarios-encontrados li {
+  padding: 10px;
+  max-width: 300px;
+  color: white;
+  font-family: monospace;
+  margin: 5px;
+  border: solid 2px #444;
+  background-color: #333;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.usuarios-encontrados li:hover {
+  background-color: #6cbc84;
+}
+
+.label {
+  position: relative;
+  display: block;
+  width: 200px;
+  border-radius: 6px;
+  border: 2px solid #6cbc84;
+  padding: 8px;
+  margin-bottom: 0.1px;
+}
+
+.label .icon {
+  position: absolute;
+  top: 53%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  color: #6cbc84;
+}
+
+.label .input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.logo-title-admin {
+  width: 32px;
+  height: 32px;
+  margin: 15px;
+}
+
+.users-found {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.usuarios {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #444;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  color: white;
+  position: relative;
+  
+}
+
+.modal-header {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #6cbc84;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 60px); /* Adjusted to fit modal height */
+}
+
+.filters {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.filters label {
+  padding: 2px;
+  width: 250px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.filters label p {
+  width: 200px;
+}
+
+.filters label:hover {
+  cursor: pointer;
+}
+
+.input-date {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #333;
+  border: 1px solid #6cbc84;
+  color: white;
+  border-radius: 5px;
+}
+
+.table-container {
+  width: 100%;
+  max-height: 400px; /* Adjusted for table container height */
+  overflow: auto;
+  margin-top: 10px;
+}
+
+.plantoes-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.plantoes-table th,
+.plantoes-table td {
+  padding: 12px;
+  border: 1px solid #6cbc84;
+}
+
+.plantoes-table th {
+  background-color: #333;
+  color: #6cbc84;
+}
+
+.plantoes-table td {
+  background-color: #444;
+  color: white;
+}
+
+.plantoes-table tr:hover {
+  background-color: #6cbc84;
+  color: white;
+}
+
+.download-xlsx {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-custom {
+  width: 100px;
+  background-color: #6cbc84;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.btn-custom2 {
+  width: 150px;
+  background: none;
+  color: #6cbc84;
+  border: none;
+  cursor: pointer;
+  margin-right: 30px;
+  font-size: 14px;
+}
+
+.btn-custom2:hover {
+  font-size: 15px;
+}
+
+.btn-custom:hover {
+  background-color: #5ca273;
+}
+
+.not-found {
+  color: white;
+  font-family: monospace;
+  margin-top: 10px;
+}
+.table-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #6cbc84;
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #5ca273;
+}
+.table-container::-webkit-scrollbar:horizontal {
+  height: 12px; /* Ajuste conforme necessário */
+}
+
+.table-container::-webkit-scrollbar:vertical {
+  width: 12px; /* Ajuste conforme necessário */
+}
+
+@media (max-height: 785px) {
+  .usuarios-encontrados {
+    height: 350px;
   }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
+}
+
+@media (max-height: 730px) {
+  .usuarios-encontrados {
+    height: 300px;
   }
-  
-  li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  
+}

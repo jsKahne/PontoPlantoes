@@ -465,58 +465,50 @@ async function iniciarPlantao(req, res) {
     }
   }
   async function register(req, res) {
-    const { cd_pessoa_fisica, nm_completo, nm_usuario, ds_senha } = req.body;
-    if (!cd_pessoa_fisica || !nm_completo || !nm_usuario || !ds_senha) {
-      return res.status(400).json({ message: "Informe o código pessoa física, nome completo, usuário e senha." });
-    }
-  
-    let connection;
     try {
-      connection = await getConnection();
-  
-      const lowerNmUsuario = nm_usuario.toLowerCase();
-  
-      const checkUserQuery = `SELECT nm_usuario FROM FHSL_APP_TASY_USERS WHERE LOWER(nm_usuario) = :lowerNmUsuario`;
-      const userCheckResult = await connection.execute(checkUserQuery, { lowerNmUsuario });
-  
-      if (userCheckResult.rows.length > 0) {
-        await connection.close();
-        return res.status(400).json({ message: "Usuário já existe." });
+      // Verifica se o usuário está autenticado
+      if (!req.user || !req.user.id) {
+        return res.status(401).json({ message: "Usuário não autenticado." });
       }
   
-      const checkCdPessoaQuery = `SELECT cd_pessoa_fisica FROM FHSL_APP_TASY_USERS WHERE cd_pessoa_fisica = :cd_pessoa_fisica`;
-      const cdPessoaCheckResult = await connection.execute(checkCdPessoaQuery, { cd_pessoa_fisica });
+      // Obtém os dados do request body
+      const { cd_pessoa_fisica, nm_completo, nm_usuario } = req.body;
   
-      if (cdPessoaCheckResult.rows.length > 0) {
-        await connection.close();
-        return res.status(400).json({ message: "Código pessoa física já existe." });
+      // Verifica se todos os campos necessários foram fornecidos
+      if (!cd_pessoa_fisica || !nm_completo || !nm_usuario ) {
+        return res.status(400).json({ message: "Todos os campos são obrigatórios." });
       }
   
+      const connection = await getConnection(); // Conectar ao banco de dados
   
-      const insertQuery = `
-        INSERT INTO FHSL_APP_TASY_USERS (cd_pessoa_fisica, nm_pessoa_fisica, nm_usuario, ds_senha, dt_criacao, dt_atualizacao, ie_reset_senha)
-        VALUES (:cd_pessoa_fisica, :nm_completo, :nm_usuario, :nm_usuario, sysdate, sysdate, '1')
+      // Verifica se o usuário já existe
+      const checkUserQuery = `SELECT COUNT(*) AS COUNT FROM FHSL_APP_TASY_USERS WHERE cd_pessoa_fisica = :cd_pessoa_fisica`;
+      const checkUserResult = await connection.execute(checkUserQuery, { cd_pessoa_fisica });
+  
+      if (checkUserResult.rows[0].COUNT > 0) {
+        await connection.close();
+        return res.status(400).json({ message: "Usuário já registrado." });
+      }
+
+  
+      // Insere o novo usuário na tabela
+      const insertUserQuery = `
+        INSERT INTO FHSL_APP_TASY_USERS (cd_pessoa_fisica, nm_pessoa_fisica, nm_usuario, ds_senha, ie_reset_senha)
+        VALUES (:cd_pessoa_fisica, :nm_completo, :nm_usuario, :nm_usuario,1)
       `;
   
-      const binds = {
+      await connection.execute(insertUserQuery, {
         cd_pessoa_fisica,
         nm_completo,
-        nm_usuario: lowerNmUsuario,
-      };
+        nm_usuario,
+      });
   
-      const result = await connection.execute(insertQuery, binds, { autoCommit: true });
+      await connection.commit(); // Commit na transação
+      await connection.close(); // Fecha a conexão
   
-      await connection.close();
-      res.status(201).json({ cd_pessoa_fisica, message: "Usuário registrado com sucesso." });
+      res.status(201).json({ message: "Usuário registrado com sucesso." });
     } catch (error) {
       console.error('Erro ao registrar usuário:', error);
-      if (connection) {
-        try {
-          await connection.close();
-        } catch (err) {
-          console.error('Erro ao fechar conexão:', err);
-        }
-      }
       res.status(500).json({ message: "Erro interno ao registrar usuário." });
     }
   }

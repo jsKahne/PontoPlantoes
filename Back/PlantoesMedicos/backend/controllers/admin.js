@@ -10,7 +10,7 @@ async function getUsers(req, res) {
         SELECT cd_pessoa_fisica, nm_usuario, nm_pessoa_fisica, ie_admin, dt_criacao, dt_atualizacao 
         FROM fhsl_app_tasy_users
         WHERE nm_pessoa_fisica LIKE :name
-        ORDER BY 2
+        ORDER BY nm_pessoa_fisica
       `;
       const result = await connection.execute(query, { name: `%${req.query.name || ''}%` });
   
@@ -103,6 +103,7 @@ async function getPlantoes(req, res) {
         WHERE cd_medico = :cd_medico
           AND dt_inicial_prev >= TO_DATE(:dataInicial, 'yyyy-MM-dd')
           AND dt_inicial_prev <= TO_DATE(:dataFinal, 'yyyy-MM-dd')
+          order by dt_inicial_prev desc
       `;
       const result = await connection.execute(query, { cd_medico, dataInicial, dataFinal });
   

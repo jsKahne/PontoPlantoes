@@ -3,7 +3,7 @@ import './styles/styleRegister.css';
 import Header from './header.js';
 import api from '../api/config'; // Certifique-se de que o caminho está correto
 import logoMin from './styles/img/icon-512.png';
-//teste
+
 const Register = () => {
   const [cd_pessoa_fisica, setCd_pessoa_fisica] = useState('');
   const [nm_completo, setNm_completo] = useState('');
@@ -15,20 +15,34 @@ const Register = () => {
     e.preventDefault();
 
     try {
+      const token = sessionStorage.getItem('token');
+      
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+      
       const response = await api.post('/api/register', {
         cd_pessoa_fisica,
         nm_completo,
         nm_usuario
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       });
 
       if (response.status === 201) {
-        setSuccess('Registro bem-sucedido. Redirecionando para login...');
+        setSuccess('Usuário registrado com sucesso.');
+        setError(''); // Limpar mensagem de erro, se houver
       } else {
         setError(response.data.message || 'Erro ao registrar.');
+        setSuccess(''); // Limpar mensagem de sucesso, se houver
       }
     } catch (error) {
-      console.error('Erro ao registrar:', error);
+      console.error('Erro ao registrar:', error.response?.data || error.message || error);
       setError('Erro interno ao registrar.');
+      setSuccess(''); // Limpar mensagem de sucesso, se houver
     }
   };
 
@@ -38,8 +52,9 @@ const Register = () => {
       <div className="register-container1">
         <form className="form" onSubmit={handleRegister}>
           <div className='center-title'>
-          
-            <p className="title"><img src={logoMin} className="logo" alt="Logo" /> Registrar Plantonista</p>
+            <p className="title">
+              <img src={logoMin} className="logo" alt="Logo" /> Registrar Plantonista
+            </p>
           </div>
           <label>
             <input
@@ -73,7 +88,6 @@ const Register = () => {
             />
             <span>Usuário Tasy</span>
           </label>
-
 
           <button type="submit" className="submit"><strong>Registrar</strong></button>
 

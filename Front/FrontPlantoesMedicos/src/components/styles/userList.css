@@ -121,3 +121,28 @@
     background-color: #5a6268;
   }
   
+  .usuarios-encontrados{
+    border: solid 3px #6cbc84;
+    padding: 10px;
+    margin: 15px;
+    width: 88%;
+    max-height: 55vh;
+    overflow-y: auto;
+  }
+  
+  .usuarios-encontrados::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .usuarios-encontrados::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Fundo transparente */
+  }
+  
+  .usuarios-encontrados::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5); /* Cor preta transparente */
+    border-radius: 4px;
+  }
+  
+  .usuarios-encontrados::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.7); /* Cor preta mais escura ao passar o mouse */
+  }

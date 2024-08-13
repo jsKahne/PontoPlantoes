@@ -1,5 +1,17 @@
+.Container-geral{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
 .plantoes-admin {
+    display: flex;
     padding: 20px;
+    width: 70%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .cards-container {

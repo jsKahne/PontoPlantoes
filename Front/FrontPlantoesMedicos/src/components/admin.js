@@ -36,7 +36,7 @@ return(
         <LuUserPlus2 className='cad-user'/>
         <p>Cadastro de usuário</p>
     </div>
-    <div className='card-admin'>
+    <div className='card-admin' onClick={() => handleNavigation('/plantoesAdmin')}> 
         <FaRegListAlt className='cad-user'/>
         <p>Listar Plantões</p>
     </div>

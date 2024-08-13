@@ -14,7 +14,10 @@ const {
 } = require('../controllers/plantaoController.js');
 const{
     getUsers,
-    resetPassword
+    resetPassword,
+    getPlantoes,
+    updatePlantao,
+    downloadPlantaoXLSX
 } = require('../controllers/admin.js');
 
 const router = express.Router();
@@ -31,4 +34,7 @@ router.get('/obter_escalas', ensureAuth, obterEscalasAtivas);
 router.post('/register', ensureAuth, register); 
 router.get('/users', ensureAuth, getUsers);  
 router.post('/reset-password', ensureAuth, resetPassword);  
+router.get('/getPlantoes', getPlantoes);
+router.put('/updatePlantoes', updatePlantao);
+router.get('/plantoes/download', downloadPlantaoXLSX);
 module.exports = router;

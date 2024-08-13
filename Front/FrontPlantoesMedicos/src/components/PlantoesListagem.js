@@ -99,16 +99,24 @@ const PlantoesListagem = () => {
           plantoes.map((plantao) => (
             <div className="card1" key={plantao.NR_SEQUENCIA}>
               <div className='titleCard'>
-              <h2>{plantao.escala_diaria}</h2>
+                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+                  {plantao.escala_diaria}
+                </h2>
               </div>
               <div className='conteudoCard'>
-              <p><strong>Data Inicial:</strong> {plantao.dt_inicial}</p>
-              <p><strong>Data Final:</strong> {plantao.dt_final}</p>
-              <p><strong>Status:</strong> {plantao.status}</p>
+                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+                  <strong>Data Inicial:</strong> {plantao.dt_inicial}
+                </p>
+                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+                  <strong>Data Final:</strong> {plantao.dt_final}
+                </p>
+                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+                  <strong>Status:</strong> {plantao.status}
+                </p>
               </div>
             </div>
           ))
-        )}
+          )}
       </div>
     </div>
   );

@@ -129,7 +129,10 @@ li {
 }
 
 li:hover {
-  background-color: #444;
+  border:solid;
+  border-width: 2px;
+  border-color: #6cbc84;
+  background-color: #555;
 }
 
 /* Estilos para os checkboxes */

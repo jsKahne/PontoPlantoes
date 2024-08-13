@@ -47,11 +47,10 @@ const Header = () => {
               src={logo}
               className='img-profile'
               alt="Logo"
-              onClick={toggleMenu} // Alterna o estado do menu ao clicar no logo
             />
              
-            <div className='header-dados' onClick={toggleMenu}>
-              <span className='header-span'>Bem-Vindo</span>
+            <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }} className='header-dados'>
+              <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}className='header-span'>Bem-Vindo</span>
               <strong>{userName}</strong>
             </div>
             

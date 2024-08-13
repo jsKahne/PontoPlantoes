@@ -47,7 +47,7 @@ const handleLogin = async (e) => {
     console.error('Erro ao fazer login:', error);
 
     if (error.response && error.response.status === 401) {
-      setError('Usuário ou senha incorreta.');
+      setError ('Usuário ou senha incorreta.');
     } else if (error.response && error.response.status === 404) {
       setError('Sem cadastro, entre em contato com os administradores.');
     } else {
@@ -111,7 +111,7 @@ const handleLogin = async (e) => {
           )}
           {!showResetPassword ? (
             <form onSubmit={handleLogin} className="login-form">
-              <h2>Login</h2>
+              <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Insira o seu usuário e senha</h2>
               <input
                 type="text"
                 placeholder="Usuário"

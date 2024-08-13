@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import api from '../api/config.js';
 import './styles/stylePlantao.css'; // Importando o arquivo CSS
 import logo from './styles/img/logo-normal-verde.svg';
+import { BsClipboard2Check } from "react-icons/bs";
 import Header from './header.js';
 const ListPlantoes = () => {
   const [plantoes, setPlantoes] = useState([]);
@@ -201,7 +202,7 @@ const ListPlantoes = () => {
     <div className='container-plant'>
     <Header />  
         <div className="div-center">
-        <h1>Plantões do Dia</h1>
+        <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}> Plantões do Dia</h1>
         <div className='add-plantao-container'>
           <button className="add-plantao" onClick={handleAdicionarPlantao}>
             Adicionar Plantão
@@ -228,6 +229,11 @@ const ListPlantoes = () => {
                   </label>
                 </li>
               ))}
+              
+
+
+
+
             </ul>
           )}
         </div>
@@ -235,18 +241,18 @@ const ListPlantoes = () => {
         {showCard && selectedPlantao && (
           <div className='card-plantao-selecionado'>
             <div className='conteudo-card' ref={plantaoStatusRef}>
-              <h2>Plantão Selecionado</h2>
+              <h2  style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px' }}>Plantão Selecionado</h2>
               <div className='line2'> </div>
-              <h3><p>Doutor: {selectedPlantao.nm_pessoa_fisica}</p></h3>
-              <p>Início do plantão: {selectedPlantao.dt_inicial}</p>
-              <p>Fim do plantão: {selectedPlantao.dt_final}</p>
-              <p>Plantão: {selectedPlantao.escala_diaria}</p>
+              <h3><p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>Doutor: {selectedPlantao.nm_pessoa_fisica}</p></h3>
+              <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Início do plantão:</strong> {selectedPlantao.dt_inicial}</p>
+              <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Fim do plantão:</strong> {selectedPlantao.dt_final}</p>
+              <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Plantão:</strong> {selectedPlantao.escala_diaria}</p>
 
               <div className='line2'> </div>
             </div>
             {selectedPlantao.finalizado ? (
               <div className="plantao-status">
-                <span><h3>Esse plantão já foi finalizado.</h3></span>
+                <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><h3>Esse plantão já foi finalizado.</h3></span>
                 <button className="ok-button" onClick={() => { setShowCard(false); setSelectedPlantao(null); }}>OK</button>
               </div>
             ) : (
@@ -274,9 +280,9 @@ const ListPlantoes = () => {
   <div className="modal" ref={modalRef}>
     <div className="modal-content">
       <span className="close" onClick={() => setModalOpen(false)}>&times;</span>
-      <h2>Confirme sua Senha</h2>
+      <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px' }}>Confirme sua Senha</h2>
       <div className="input-container">
-        <label htmlFor="password">Senha</label>
+        <label htmlFor="password"></label>
         <input
           id="password"
           type="password"
@@ -304,7 +310,7 @@ const ListPlantoes = () => {
       <div className="modal-header">
         <img src={logo} className="modal-logo" alt="Logo" />
         <h3>Dados do plantão</h3>
-        <div className="line"></div>
+        <div className="line3"></div>
       </div>
       <div className="modal-body">
         <div className="select-modal-add">

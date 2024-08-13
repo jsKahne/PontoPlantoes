@@ -67,7 +67,11 @@
     border-color: #6cbc84;
     text-decoration: none;
     margin-left: 5px;
-  }  
+  }
+  
+  .user-list button:active{
+    background-color:#6cbc84
+  }
   
 
   .user-list tr {
@@ -89,11 +93,15 @@
     border-collapse: collapse;
     margin: 20px auto;
   }
-  /* Adicione esta regra ao seu arquivo CSS */
+
+  .text-left {
+    text-align: left;
+  }
+  
 .card1 {
   background-color: #444;
   width: 250px;
-  height: 300px;
+  height: 200px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -102,40 +110,15 @@
   border-radius: 6px;
   border:solid;
   border-width: 2px;
-  border-color: #6cbc84;
-  margin: 10px; /* Espaço entre os cards */
-  color: white; /* Cor do texto dentro do card */
   padding: 10px;
+  transition: 0.4s;
 }
 
-.card1::before {
-  content: "";
-  position: absolute;
-  z-index: -19;
-  width: 262px;
-  height: 312px;
-  margin: auto;
-  background: rgb(4,0,255);
-  background: linear-gradient(135deg, rgba(4,0,255,1) 0%, rgba(136,0,255,1) 35%, rgba(209,0,255,1) 100%);
-  border-radius: 6px;
-}
-
-.card1::after {
-  content: "";
-  position: absolute;
-  z-index: -19;
-  width: 262px;
-  height: 312px;
-  margin: auto;
-  background: rgb(4,0,255);
-  background: linear-gradient(135deg, rgba(4,0,255,1) 0%, rgba(136,0,255,1) 35%, rgba(209,0,255,1) 100%);
-  border-radius: 6px;
-  filter: blur(20px);
-  transition: 2s;
-}
-
-.card1:hover::after {
-  animation: cardafter 2.5s infinite forwards;
+.card1:hover{
+  border: solid;
+  border-width: 1px;
+  border-color: #6cbc84;
+  translate: 0 -10px;
 }
 
 @keyframes cardafter {

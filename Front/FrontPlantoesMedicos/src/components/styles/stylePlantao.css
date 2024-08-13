@@ -184,6 +184,7 @@ input[type="checkbox"]:checked + .checkmark {
   margin: 5px 0;
 }
 
+
 .plantao-status {
   display: flex;
   flex-direction: column;
@@ -205,7 +206,7 @@ input[type="checkbox"]:checked + .checkmark {
   background-color: #6cbc84;
   width: 100%;
   border: none;
-  color: #222;
+  color: #ffffff;
   padding: 8px 16px;
   text-align: center;
   text-decoration: none;
@@ -226,9 +227,9 @@ input[type="checkbox"]:checked + .checkmark {
 }
 
 .action-buttons button {
-  background-color: #6cbc84;
+  background-color: #0E7AFE;
   border: none;
-  color: #222;
+  color: #ffffff;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -237,6 +238,7 @@ input[type="checkbox"]:checked + .checkmark {
   cursor: pointer;
   border-radius: 5px;
   margin: 0 10px;
+  transition: 0.4s;
 }
 .add-plantao-container {
   width: 70%;
@@ -245,7 +247,7 @@ input[type="checkbox"]:checked + .checkmark {
 }
 
 .add-plantao {
-  color: #6cbc84;
+  color: #0E7AFE;
   background: none;
   border: none;
   cursor: pointer;
@@ -291,6 +293,7 @@ input[type="checkbox"]:checked + .checkmark {
 }
 
 .close:hover {
+  transition: 0.4s;
   color: #6cbc84;
 }
 
@@ -408,11 +411,10 @@ input[type="checkbox"]:checked + .checkmark {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.9);
-  border-radius: 20px;
+  background-color: #222;
+  border-radius: 10px;
   color: #fff;
   width: 400px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -454,26 +456,30 @@ input[type="checkbox"]:checked + .checkmark {
 
 .modal-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .confirm-button, .cancel-button {
   padding: 12px 24px;
   margin-left: 20px;
   border: none;
-  border-radius: 30px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: all 0.3s ease;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .confirm-button {
-  background-color: #4CAF50;
+  background-color: #6cbc84;
   color: white;
 }
 
 .cancel-button {
-  background-color: #f44336;
+  background-color: #e3164d;
   color: white;
 }
 

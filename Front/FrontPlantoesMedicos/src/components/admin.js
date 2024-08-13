@@ -24,21 +24,21 @@ return(
 
 
     <div className='title-adm'>
-        <h1>Administrador</h1>
+        <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '35px' }}>Administrador</h1>
         <div className='line1'></div>
     </div>
     <div className='container-menu' >
     <div className='card-admin' onClick={() => handleNavigation('/users')}>
         <LuUser2 className='cad-user'/>
-        <p>Usuários</p>
+        <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Usuários</strong></p>
     </div>
     <div className='card-admin'  onClick={() => handleNavigation('/registerfhsl')}>
         <LuUserPlus2 className='cad-user'/>
-        <p>Cadastro de usuário</p>
+        <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Cadastro de usuário</strong></p>
     </div>
     <div className='card-admin' onClick={() => handleNavigation('/plantoesAdmin')}> 
         <FaRegListAlt className='cad-user'/>
-        <p>Listar Plantões</p>
+        <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Consultar plantões</strong></p>
     </div>
   
 

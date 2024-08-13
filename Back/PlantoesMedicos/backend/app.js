@@ -10,7 +10,7 @@ initialize();
 
 // Configurar CORS
 const corsOptions = {
-  origin: ['http://localhost:81' , 'http://10.2.1.107:81'], //'http://10.2.0.93', 'http://plantoes.fhsl.org.br', 'https://10.2.0.93'],
+  origin: ['http://localhost'], //'http://10.2.0.93', 'http://plantoes.fhsl.org.br', 'https://10.2.0.93'],
   credentials: true, // Permite o envio de cookies de autenticação (se houver)
 };
 

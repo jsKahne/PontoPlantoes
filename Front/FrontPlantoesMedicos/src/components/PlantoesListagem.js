@@ -72,8 +72,8 @@ const PlantoesListagem = () => {
 
   return (
     <div className="user-list">
-      <h1>Consulta de Plantões</h1>
-      <div>
+      <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Consulta de Plantões</h1>
+      <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
         Data Inicial:
         <input
           type="date"
@@ -92,32 +92,33 @@ const PlantoesListagem = () => {
         {erro && <p style={{ color: 'red' }}>{erro}</p>}
       </div>
       
-      <div className="cards-container">
-        {plantoes.length === 0 ? (
-          <p>Não há registros</p>
-        ) : (
-          plantoes.map((plantao) => (
-            <div className="card1" key={plantao.NR_SEQUENCIA}>
-              <div className='titleCard'>
-                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
-                  {plantao.escala_diaria}
-                </h2>
-              </div>
-              <div className='conteudoCard'>
-                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
-                  <strong>Data Inicial:</strong> {plantao.dt_inicial}
-                </p>
-                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
-                  <strong>Data Final:</strong> {plantao.dt_final}
-                </p>
-                <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
-                  <strong>Status:</strong> {plantao.status}
-                </p>
-              </div>
-            </div>
-          ))
-          )}
+<div className="cards-container">
+  {plantoes.length === 0 ? (
+    <p className="text-left">Não há registros</p>
+  ) : (
+    plantoes.map((plantao) => (
+      <div className="card1" key={plantao.NR_SEQUENCIA}>
+        <div className="titleCard">
+          <h2 className="text-left" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+            {plantao.escala_diaria}
+          </h2>
+        </div>
+        <div className="conteudoCard">
+          <p className="text-left" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+            <strong>Data Inicial:</strong> {plantao.dt_inicial}
+          </p>
+          <p className="text-left" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+            <strong>Data Final:</strong> {plantao.dt_final}
+          </p>
+          <p className="text-left" style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>
+            <strong>Status:</strong> {plantao.status}
+          </p>
+        </div>
       </div>
+    ))
+  )}
+</div>
+
     </div>
   );
 };

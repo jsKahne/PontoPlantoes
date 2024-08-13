@@ -6,6 +6,7 @@ import ConsultaPlantoes from './components/ConsultaPlantoes.js';
 import Admin from './components/admin.js';
 import Register from './components/register.js';
 import Users from './components/users.js';
+import PlantoesAdmin from './components/plantoesAdmin.js';
 const App = () => {
         return (
         <Router>
@@ -17,6 +18,8 @@ const App = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/registerfhsl" element={<Register />} />
                 <Route path="/users" element={<Users/>} />
+                <Route path='/plantoesAdmin' element={<PlantoesAdmin/>}/>
+
             </Routes>
         </Router>
     );

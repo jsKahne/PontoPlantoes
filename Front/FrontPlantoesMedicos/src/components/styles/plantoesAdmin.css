@@ -1,0 +1,114 @@
+.plantoes-admin {
+    padding: 20px;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card1 {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    cursor: pointer;
+  }
+  
+  .titleCard h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .conteudoCard p {
+    margin: 5px 0;
+  }
+  
+  .plantao-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .plantao-details {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+  }
+  
+  .plantao-details input {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .buttons {
+    margin-top: 10px;
+  }
+  
+  .update-button,
+  .close-button {
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .update-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .update-button:hover {
+    background-color: #218838;
+  }
+  
+  .close-button:hover {
+    background-color: #c82333;
+  }
+  
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Adicione isso ao arquivo CSS existente */
+
+input[type="text"] {
+    padding: 8px;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  

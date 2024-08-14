@@ -6,6 +6,8 @@ import { LuUserPlus2 } from "react-icons/lu";
 import { LuUser2 } from "react-icons/lu";
 import { FaRegListAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { Ri24HoursLine } from "react-icons/ri";
+
 
 
 const Principal = () => {
@@ -40,7 +42,10 @@ return(
         <FaRegListAlt className='cad-user'/>
         <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Consultar plantões</strong></p>
     </div>
-  
+    <div className='card-admin' onClick={() => handleNavigation('/plantao24')}> 
+        <Ri24HoursLine className='cad-user'/>
+        <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}><strong>Plantão 24H</strong></p>
+    </div>
 
     </div>
      </div>                   

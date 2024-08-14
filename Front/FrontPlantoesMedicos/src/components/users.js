@@ -3,6 +3,10 @@ import api from '../api/config';
 import Header from './header.js';
 import './styles/userList.css'; 
 import logoMin from './styles/img/icon-512.png';
+import { IoSearchOutline } from "react-icons/io5";
+import { CgClose } from "react-icons/cg";
+
+
 function UserList() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -70,11 +74,7 @@ function UserList() {
       <div className="user-list-container">
         <h1>Gerenciamento de Usuários</h1>
         <label className="label">
-          <span className="icon">
-            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" strokeWidth="1.25" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-            </svg>
-          </span>
+          <IoSearchOutline className="icon"/>
           <input
             type="text"
             className="input"
@@ -112,15 +112,18 @@ function UserList() {
         {selectedUser && (
           <div className="user-details-overlay">
             <div className="user-details">
-              <h3>Detalhes do Usuário</h3>
-              <p><strong>Nome:</strong> {selectedUser.nm_pessoa_fisica}</p>
+              <div className="closebtn"> 
+            <CgClose className='close-button1'  onClick={() => setSelectedUser(null)}/>
+            </div>
+              <h3 style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px' }}>Detalhes do Usuário</h3>
+              <p>Nome: {selectedUser.nm_pessoa_fisica}</p>
               <p><strong>Usuário:</strong> {selectedUser.nm_usuario}</p>
               <p><strong>Admin:</strong> {selectedUser.ie_admin ? 'Sim' : 'Não'}</p>
               <p><strong>Data de Criação:</strong> {selectedUser.dt_criacao}</p>
               <p><strong>Data de Atualização:</strong> {selectedUser.dt_atualizacao}</p>
               <div className="buttons">
                 <button className="reset-button" onClick={handleResetPassword}>Resetar Senha</button>
-                <button className="close-button" onClick={() => setSelectedUser(null)}>Fechar</button>
+                
               </div>
             </div>
           </div>

@@ -101,6 +101,8 @@
   cursor: pointer;
 }
 
+
+
 .close-button:hover {
   opacity: 0.8;
 }
@@ -157,6 +159,7 @@ ul {
 .label .icon {
   position: absolute;
   top: 53%;
+  font-size: 25px;
   right: 0;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;

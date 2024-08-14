@@ -12,7 +12,7 @@ const Menu = () => {
 
   useEffect(() => {
     const checkAdminStatus = () => {
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       console.log('Token encontrado no localStorage:', token); // Debug
       if (token) {
         try {
@@ -56,7 +56,7 @@ const Menu = () => {
       
       {isAdmin && (
         <>
-          <button className="button" onClick={() => handleNavigation('/ConsultaPlantoesAdmin')}>Gerenciar plantões</button>
+          <button className="button" onClick={() => handleNavigation('/plantoesAdmin')}>Gerenciar plantões</button>
       <div className="line3"></div>
 
           <button className="button" onClick={() => handleNavigation('/registerfhsl')}>Registrar usuário</button>

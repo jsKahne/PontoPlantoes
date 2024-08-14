@@ -14,8 +14,10 @@ const PlantoesAdmin = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedDateInicial, setSelectedDateInicial] = useState('');
   const [selectedDateFinal, setSelectedDateFinal] = useState('');
+  const [selectedDateMesAno, setSelectedDateMesAno] = useState('');
   const [erro, setErro] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
 
   useEffect(() => {
     // Definir a data inicial e final como o primeiro e o último dia do mês passado
@@ -53,7 +55,7 @@ const PlantoesAdmin = () => {
       setErro('Ambas as datas devem ser preenchidas.');
       return;
     }
-    
+
     setPlantoes([]);
     setErro('');
 
@@ -89,12 +91,32 @@ const PlantoesAdmin = () => {
     }
   };
 
-  const handleDownload = () => {
-    const ws = XLSX.utils.json_to_sheet(plantoes);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Plantões');
-    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'plantoes.xlsx');
+  const handleDownload = async () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      
+      // Transformando o valor selecionado em "mm/yyyy"
+      const formattedMesAno = format(new Date(selectedDateMesAno), 'MM/yyyy');
+      
+      const response = await api.get('/api/plantoes/downloadMes', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        params: {
+          mesAno: formattedMesAno,
+        },
+        responseType: 'arraybuffer', // Importante para receber dados binários
+      });
+
+      const blob = new Blob([response.data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      saveAs(blob, `plantoes_${formattedMesAno}.xlsx`);
+      setIsModalOpen2(false);
+    } catch (error) {
+      console.error('Erro ao baixar o arquivo XLSX:', error);
+    }
   };
 
   const handleSearchUser = () => {
@@ -122,6 +144,14 @@ const PlantoesAdmin = () => {
 
   const handleModalSubmit = () => {
     fetchPlantoes();
+  };
+
+  const handleOpenModal2 = () => {
+    setIsModalOpen2(true);
+  };
+
+  const handleCloseModal2 = () => {
+    setIsModalOpen2(false);
   };
 
   useEffect(() => {
@@ -166,6 +196,7 @@ const PlantoesAdmin = () => {
               </label>
               <button onClick={handleSearchUser} className="btn-custom">Pesquisar Usuário</button>
             </div>
+            <button onClick={handleOpenModal2} className='btn-custom'>Download mensal</button>
             <div className='usuarios-encontrados'>
               {usuarios.length === 0 ? (
                 <p className='not-found'>Nenhum usuário encontrado</p>
@@ -190,55 +221,80 @@ const PlantoesAdmin = () => {
                 <h2>Filtros de Data</h2>
               </div>
               <div className="modal-body">
-                <div className="filters">
-                  <label>
-                    <p>Data Inicial:</p>
-                    <input
-                      type="date"
-                      value={selectedDateInicial}
-                      onChange={(event) => setSelectedDateInicial(event.target.value)}
-                      className="input-date"
-                    />
-                  </label>
-                  <label>
-                    <p>Data Final:</p>
-                    <input
-                      type="date"
-                      value={selectedDateFinal}
-                      onChange={(event) => setSelectedDateFinal(event.target.value)}
-                      className="input-date"
-                    />
-                  </label>
-                  <button onClick={handleModalSubmit} className="btn-custom">Consultar</button>
-                </div>
-                {plantoes.length > 0 && (
-                  <div><div className='download-xlsx'> 
-                  <button onClick={handleDownload} className="btn-custom2">Baixar XLSX</button>
-                  </div>
+                <label>
+                  Data Inicial:
+                  <input
+                    type="date"
+                    value={selectedDateInicial}
+                    onChange={(e) => setSelectedDateInicial(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Data Final:
+                  <input
+                    type="date"
+                    value={selectedDateFinal}
+                    onChange={(e) => setSelectedDateFinal(e.target.value)}
+                  />
+                </label>
+              </div>
+              {erro && <p className="error-message">{erro}</p>}
+              <div className="modal-footer">
+                <button onClick={handleModalSubmit} className="btn-custom">Consultar</button>
+              </div>
+
+              {plantoes.length > 0 && (
+                <div className="result-modal">
+                  <h3>Resultados Encontrados</h3>
                   <div className="table-container">
-                    <table className="plantoes-table">
+                    <table className="table">
                       <thead>
                         <tr>
-                          <th>Escala Diária</th>
+                          <th>Data Inicial Prevista</th>
+                          <th>Data Final Prevista</th>
                           <th>Data Inicial</th>
                           <th>Data Final</th>
-                          <th>Status</th>
+                          <th>Situação</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {plantoes.map((plantao) => (
-                          <tr key={plantao.cd_plantao}>
-                            <td>{plantao.escala_diaria}</td>
+                        {plantoes.map((plantao, index) => (
+                          <tr key={index}>
                             <td>{plantao.dt_inicial_prev}</td>
                             <td>{plantao.dt_final_prev}</td>
+                            <td>{plantao.dt_inicial}</td>
+                            <td>{plantao.dt_final}</td>
                             <td>{plantao.situacao}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
-                  </div></div>
-                )}
-                {erro && <p className="error-message">{erro}</p>}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {isModalOpen2 && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <button onClick={handleCloseModal2} className="close-button">×</button>
+              <div className="modal-header">
+                <h2>Selecione o Mês/Ano</h2>
+              </div>
+              <div className="modal-body">
+                <label>
+                  Mês/Ano:
+                  <input
+                    type="month"
+                    value={selectedDateMesAno}
+                    onChange={(e) => setSelectedDateMesAno(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div className="modal-footer">
+                <button onClick={handleDownload} className="btn-custom">Download XLSX</button>
               </div>
             </div>
           </div>

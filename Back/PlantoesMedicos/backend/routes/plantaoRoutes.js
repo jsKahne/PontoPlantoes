@@ -17,7 +17,8 @@ const{
     resetPassword,
     getPlantoes,
     updatePlantao,
-    downloadPlantaoXLSX
+    downloadPlantaoXLSX,
+    downloadPlantaoMes
 } = require('../controllers/admin.js');
 
 const router = express.Router();
@@ -37,4 +38,5 @@ router.post('/reset-password', ensureAuth, resetPassword);
 router.get('/getPlantoes', getPlantoes);
 router.put('/updatePlantoes', updatePlantao);
 router.get('/plantoes/download', downloadPlantaoXLSX);
+router.get('/plantoes/downloadMes', ensureAuth, downloadPlantaoMes);
 module.exports = router;

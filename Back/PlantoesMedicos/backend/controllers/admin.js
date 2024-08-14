@@ -248,10 +248,89 @@ async function downloadPlantaoXLSX(req, res) {
   }
 }
 
+
+async function downloadPlantaoMes(req, res) {
+  const {  mesAno } = req.query;
+
+  if (!mesAno ) {
+    return res.status(400).json({ message: "Parâmetros necessários ausentes." });
+  }
+
+  let connection;
+  try {
+    connection = await getConnection();
+
+    const query = `SELECT
+    obter_nome_medico(cd_medico, 'N') nm_medico,
+    dt_inicial,
+    dt_final, 
+    dt_inicial_prev,
+    dt_final_prev,
+    CASE
+        when dt_inicial is null and dt_final is null then 'Não realizado'
+        when dt_inicial is not null and dt_final is not null then 'Finalizado'
+        when dt_inicial is not null and dt_final is null then 'Não finalizado'
+    END as status,
+    Obter_Dia_Semana(dt_inicial_prev) dia_semana,
+    CASE 
+        when esus_obter_turno_data(dt_inicial_prev) = 1 then 'Manhã'
+        when esus_obter_turno_data(dt_inicial_prev) = 2 then 'Tarde'
+        when esus_obter_turno_data(dt_inicial_prev) = 3 then 'Noite'
+    END as turno,
+    obter_desc_tipo_plantao(nr_seq_tipo_plantao) tipo_plantao
+FROM
+    medico_plantao
+WHERE
+    to_char(dt_inicial_prev, 'mm/yyyy') = :mesAno
+    `;
+    const result = await connection.execute(query, { mesAno });
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "Nenhum plantão encontrado." });
+    }
+
+    const plantoesMes = result.rows.map(row => ({
+      nm_medico: row[0],
+      dt_inicial: row[1],
+      dt_final: row[2],
+      dt_inicial_prev: row[3],
+      dt_final_prev: row[4],
+      status: row[5],
+      dia_semana: row[6],
+      turno: row[7],
+      tipo_plantao: row[8],
+    }));
+
+    // Cria a planilha XLSX
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(plantoesMes);
+    XLSX.utils.book_append_sheet(wb, ws, 'Plantão Mensal');
+
+    // Define o cabeçalho da resposta
+    res.setHeader('Content-Disposition', 'attachment; filename=plantoes.xlsx');
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+    // Envia a planilha como resposta
+    const xlsxData = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+    res.send(xlsxData);
+  } catch (error) {
+    console.error('Erro ao gerar XLSX:', error);
+    res.status(500).json({ message: "Erro interno ao gerar o arquivo XLSX." });
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error('Erro ao fechar conexão:', err);
+      }
+    }
+  }
+}
 module.exports = {
   getUsers,
   resetPassword,
   getPlantoes,
   updatePlantao,
-  downloadPlantaoXLSX
+  downloadPlantaoXLSX,
+  downloadPlantaoMes
 };

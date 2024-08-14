@@ -6,7 +6,7 @@
   background-color: #333;
   padding: 20px;
   border-radius: 20px;
-  border: 1px solid white;
+  border: 1px solid #6cbc84;
   position: relative;
   margin: 30px;
 }
@@ -23,13 +23,10 @@
   letter-spacing: -1px;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding-left: 0px;
 }
-.title img{
-  margin-right: 20px;
-}
-
 
 
 
@@ -127,6 +124,9 @@
   color: greenyellow;
 }
 .logo{
-  width: 52px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
   height: 52px;
+  margin-bottom: 5px;
 }

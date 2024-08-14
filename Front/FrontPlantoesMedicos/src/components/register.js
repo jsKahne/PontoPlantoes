@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/styleRegister.css';
 import Header from './header.js';
 import api from '../api/config'; // Certifique-se de que o caminho está correto
-import logoMin from './styles/img/icon-512.png';
+import logoMin from './styles/img/logo-normal-verde.svg';
 
 const Register = () => {
   const [cd_pessoa_fisica, setCd_pessoa_fisica] = useState('');
@@ -51,9 +51,9 @@ const Register = () => {
       <Header />
       <div className="register-container1">
         <form className="form" onSubmit={handleRegister}>
-          <div className='center-title'>
+          <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }} className='center-title'>
             <p className="title">
-              <img src={logoMin} className="logo" alt="Logo" /> Registrar Plantonista
+              <img src={logoMin} className="logo" alt="Logo"  /> Registrar Plantonista
             </p>
           </div>
           <label>
@@ -64,7 +64,7 @@ const Register = () => {
               value={cd_pessoa_fisica}
               onChange={(e) => setCd_pessoa_fisica(e.target.value)}
             />
-            <span>Código Pessoa Física</span>
+            <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>Código Pessoa Física</span>
           </label>
 
           <label>
@@ -75,7 +75,7 @@ const Register = () => {
               value={nm_completo}
               onChange={(e) => setNm_completo(e.target.value)}
             />
-            <span>Nome completo</span>
+            <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>Nome Completo</span>
           </label>
 
           <label>
@@ -86,7 +86,7 @@ const Register = () => {
               value={nm_usuario}
               onChange={(e) => setNm_usuario(e.target.value)}
             />
-            <span>Usuário Tasy</span>
+            <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }}>Usuário Tasy</span>
           </label>
 
           <button type="submit" className="submit"><strong>Registrar</strong></button>

@@ -366,6 +366,11 @@ ul {
 .table-container::-webkit-scrollbar:vertical {
   width: 12px; /* Ajuste conforme necessário */
 }
+.container-filtro-mes-ano{
+  width: 500px;
+  height: 400px;
+  background-color: pink;
+}
 
 @media (max-height: 785px) {
   .usuarios-encontrados {

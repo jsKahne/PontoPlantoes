@@ -37,23 +37,34 @@ flex-direction: column;
     font-size: 10px;
     width: 150px;
     height: 130px;
-    border: 1px solid #6cbc84;
+    border: 2px solid #ffff;
     border-radius: 10px;
     cursor: pointer;
     margin: 10px;
-}
-.card-admin:hover{
-    border: 2px solid #6cbc84;
+    transition: 0.4s;
 }
 
-.card-admin p{
+.card-admin p strong{
     font-size: 15px;
     color: white;
     
 }
 
-.cad-user{
-    font-size: 50px;
+.card-admin:hover{
+    translate: 0 -10px;
+    border-color: #6cbc84;
+    
+    .cad-user{
+        color: #6cbc84;
+    }
+    
+  strong{
     color: #6cbc84;
+  }
+        
 }
 
+.cad-user{
+    font-size: 50px;
+    color: white;
+}

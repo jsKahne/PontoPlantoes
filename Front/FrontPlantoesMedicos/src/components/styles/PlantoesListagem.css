@@ -112,11 +112,12 @@
   border-width: 2px;
   padding: 10px;
   transition: 0.4s;
+  margin: 5px;
 }
 
 .card1:hover{
   border: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #6cbc84;
   translate: 0 -10px;
 }

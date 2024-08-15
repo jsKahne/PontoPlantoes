@@ -6,6 +6,8 @@ import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
 import Header from './header';
 import LogoA from './styles/img/icon-512.png';
+import { IoSearchOutline } from "react-icons/io5";
+
 
 const PlantoesAdmin = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -168,22 +170,19 @@ const PlantoesAdmin = () => {
     <div className='container-geral'>
       <Header />
       <div className="plantoes-admin">
-        <div className='title'>
+        <div className='title-plantao-admin'>
           <img src={LogoA} className="logo-title-admin" alt="Logo" />
-          <h1>Consulta de Plantões</h1>
+          <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Consulta de Plantões</h1>
           <img src={LogoA} className="logo-title-admin" alt="Logo" />
         </div>
         <div className='line-admin'></div>
 
         <div className='users-found'>
-          <h2>Usuários Encontrados</h2>
           <div className='usuarios'>
             <div className='pesquisa'>
               <label className="label">
                 <span className="icon">
-                  <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeWidth="1.25" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                  </svg>
+                <IoSearchOutline/>
                 </span>
                 <input
                   type="text"
@@ -194,12 +193,12 @@ const PlantoesAdmin = () => {
                   onChange={(e) => setSearchTerm(e.target.value)} 
                 />
               </label>
-              <button onClick={handleSearchUser} className="btn-custom">Pesquisar Usuário</button>
+              <button style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }} onClick={handleSearchUser} className="btn-custom">Pesquisar Usuário</button>
+              <button style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px' }} onClick={handleOpenModal2} className='btn-custom'>Download mensal</button>
             </div>
-            <button onClick={handleOpenModal2} className='btn-custom'>Download mensal</button>
             <div className='usuarios-encontrados'>
               {usuarios.length === 0 ? (
-                <p className='not-found'>Nenhum usuário encontrado</p>
+                <p  className='not-found'>Nenhum usuário encontrado</p>
               ) : (
                 <ul>
                   {usuarios.map((usuario) => (

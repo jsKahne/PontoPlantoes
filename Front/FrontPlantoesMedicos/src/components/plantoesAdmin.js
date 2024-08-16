@@ -217,10 +217,10 @@ const PlantoesAdmin = () => {
             <div className="modal-content">
               <button onClick={handleCloseModal} className="close-button">×</button>
               <div className="modal-header">
-                <h2>Filtros de Data</h2>
+                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Filtros de Data</h2>
               </div>
               <div className="modal-body">
-                <label>
+                <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
                   Data Inicial:
                   <input
                     type="date"
@@ -228,7 +228,7 @@ const PlantoesAdmin = () => {
                     onChange={(e) => setSelectedDateInicial(e.target.value)}
                   />
                 </label>
-                <label>
+                <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
                   Data Final:
                   <input
                     type="date"
@@ -249,11 +249,11 @@ const PlantoesAdmin = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th>Data Inicial Prevista</th>
-                          <th>Data Final Prevista</th>
-                          <th>Data Inicial</th>
-                          <th>Data Final</th>
-                          <th>Situação</th>
+                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Inicial Prevista</th>
+                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Final Prevista</th>
+                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Inicial</th>
+                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Final</th>
+                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Situação</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -280,11 +280,10 @@ const PlantoesAdmin = () => {
             <div className="modal-content">
               <button onClick={handleCloseModal2} className="close-button">×</button>
               <div className="modal-header">
-                <h2>Selecione o Mês/Ano</h2>
+                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Selecione a Data</h2>
               </div>
               <div className="modal-body">
-                <label>
-                  Mês/Ano:
+                <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
                   <input
                     type="month"
                     value={selectedDateMesAno}
@@ -293,7 +292,7 @@ const PlantoesAdmin = () => {
                 </label>
               </div>
               <div className="modal-footer">
-                <button onClick={handleDownload} className="btn-custom">Download XLSX</button>
+                <button onClick={handleDownload} className="btn-custom">Download Excel</button>
               </div>
             </div>
           </div>

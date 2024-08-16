@@ -211,7 +211,7 @@ const ListPlantoes = () => {
         <div className='line'></div>
         <div className="list-Plantoes">
           {plantoes.length === 0 ? (
-            <p className="no-plantoes">Não há plantões disponíveis para o usuário hoje!</p>
+            <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px' }} className="no-plantoes">Não há plantões disponíveis para o usuário hoje!</p>
           ) : (
             <ul>
               {plantoes.map(plantao => (

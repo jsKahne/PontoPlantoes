@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import api from '../api/config';
 import Header from './header.js';
 import './styles/userList.css'; 
-import logoMin from './styles/img/icon-512.png';
 import { IoSearchOutline } from "react-icons/io5";
 import { CgClose } from "react-icons/cg";
 
@@ -15,7 +14,8 @@ function UserList() {
 
   useEffect(() => {
     fetchUsers();
-  }, [searchTerm]);
+  }, //[searchTerm]
+);
 
   const fetchUsers = async () => {
     try {
@@ -37,10 +37,9 @@ function UserList() {
       console.error('Erro ao buscar usuários:', error);
       if (error.response && error.response.status === 401) {
         alert('Sessão expirada. Por favor, faça login novamente.');
-        // Aqui você pode redirecionar para a página de login
       } else if (error.response && error.response.status === 404) {
         setNoUsersFound(true);
-        setUsers([]); // Limpar usuários para mostrar a mensagem
+        setUsers([]);
       }
     }
   };

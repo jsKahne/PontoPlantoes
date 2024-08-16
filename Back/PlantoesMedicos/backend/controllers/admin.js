@@ -1,5 +1,6 @@
 const { getConnection } = require('../dbConfig');
 const XLSX = require('xlsx');
+//const format = require('date-fns');
 
 async function getUsers(req, res) {
     let connection;
@@ -357,15 +358,14 @@ async function getPlantao24h(req, res) {
             MEDICO_PLANTAO m
          ON 
             t.cd_pessoa_fisica = m.cd_medico 
-            AND t.dt_inicio = m.dt_inicial
+            AND to_char(t.dt_inicio,'dd/mm/yyyy hh24') = to_char(m.dt_inicial,'dd/mm/yyyy hh24')
          WHERE 
             t.tipo_escala = :tipo_escala
             AND to_char(t.dt_inicio, 'mm/yyyy') = :mesAno
       `;
       const result = await connection.execute(query, { tipo_escala, mesAno });
 
-      // Adicionando logs para verificar o que está sendo retornado
-      console.log("Dados retornados do banco:", result.rows);
+
 
       if (result.rows.length === 0) {
           return res.status(404).json({ message: "Nenhum plantão encontrado." });
@@ -399,11 +399,10 @@ async function getPlantao24h(req, res) {
 }
 
 
-
 async function confirmarPlantao(req, res) {
-  const { tipo_escala, cd_pessoa_fisica, dt_inicio, dt_final } = req.body;
+  const { tipo_escala, cd_medico, dt_inicio, dt_final } = req.body;
 
-  if (!tipo_escala || !cd_pessoa_fisica || !dt_inicio || !dt_final) {
+  if (!tipo_escala || !cd_medico || !dt_inicio || !dt_final) {
       return res.status(400).json({ message: "Parâmetros necessários ausentes." });
   }
 
@@ -430,12 +429,8 @@ async function confirmarPlantao(req, res) {
               return res.status(400).json({ message: "Tipo de escala inválido." });
       }
 
-      // Calculando dt_chamado (dt_inicio - 1 hora)
-      const dt_chamado = new Date(new Date(dt_inicio).getTime() - 60 * 60 * 1000);
-
-      // Calculando qt_minuto (diferença entre dt_final e dt_inicial em minutos)
-      const qt_minuto = Math.floor((new Date(dt_final) - new Date(dt_inicio)) / (60 * 1000));
-
+      // Calculando dt_chamado (dt_inicial ajustado para 06:00:00)
+      // Formatando dt_inicio para o formato 'DD/MM/YYYY'
       const query = `
           INSERT INTO MEDICO_PLANTAO (
               cd_estabelecimento, 
@@ -455,27 +450,25 @@ async function confirmarPlantao(req, res) {
               1, 
               MEDICO_PLANTAO_SEQ.nextval, 
               :cd_medico, 
-              :dt_chamado, 
-              :dt_inicial_prev, 
-              :dt_final_prev, 
-              :dt_inicial, 
-              :dt_final
+              TO_DATE(TO_CHAR(TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS') - INTERVAL '1' HOUR, 'DD/MM/YYYY') || ' 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_inicial_prev, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_final_prev, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_final, 'DD/MM/YYYY HH24:MI:SS'),
               :nr_Seq_tipo_plantao, 
               :nr_seq_regra_esp, 
               SYSDATE, 
               'app', 
-              TO_DATE()
+              (TO_DATE(:dt_final, 'DD/MM/YYYY HH24:MI:SS') - TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS')) * 24 * 60
           )
       `;
 
       await connection.execute(query, {
-          cd_medico: cd_pessoa_fisica,
-          dt_chamado,
+          cd_medico,
           dt_inicial_prev: dt_inicio,
           dt_final_prev: dt_final,
           dt_inicial: dt_inicio,
           dt_final: dt_final,
-          qt_minuto,
           nr_Seq_tipo_plantao,
           nr_seq_regra_esp
       }, { autoCommit: true });
@@ -494,6 +487,9 @@ async function confirmarPlantao(req, res) {
       }
   }
 }
+
+
+  
 
 module.exports = {
   getUsers,

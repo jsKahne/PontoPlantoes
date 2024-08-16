@@ -3,8 +3,8 @@ const oracledb = require('oracledb');
 const dbConfig = {
   user: "tasy",
   password: "aloisk",
-  //connectString: '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=racscan.fhsl.org.br)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=dbfund)))'
-  connectString: '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.2.0.14)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=dbteste)))'
+  connectString: '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=racscan.fhsl.org.br)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=dbfund)))'
+ // connectString: '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.2.0.14)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=dbteste)))'
 };
 
 async function initialize() {

@@ -210,9 +210,12 @@ ul {
   background-color: #444;
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 30%;
   max-width: 900px;
   max-height: 80vh;
+  border: solid;
+  border-width: 2px;
+  border-color:#6cbc84;
   color: white;
   position: relative;
   
@@ -227,6 +230,7 @@ ul {
 .modal-body {
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
   max-height: calc(100% - 60px); /* Adjusted to fit modal height */
 }
 
@@ -310,14 +314,17 @@ ul {
 }
 
 .btn-custom {
-  width: 100px;
-  background-color: #6cbc84;
+  width: 150px;
+  background-color: #555;
   color: white;
   border: none;
   cursor: pointer;
-  margin-left: 20px;
   font-size: 14px;
+  border: solid;
+  border-width: 2px;
+  border-color: #666; 
   border-radius: 5px;
+
 }
 
 .btn-custom2 {
@@ -335,7 +342,11 @@ ul {
 }
 
 .btn-custom:hover {
-  background-color: #5ca273;
+  transition: 0.4s;
+  border: solid;
+  border-width: 2px;
+  border-color: #6cbc84;
+  background-color: #6cbc84;
 }
 
 .not-found {

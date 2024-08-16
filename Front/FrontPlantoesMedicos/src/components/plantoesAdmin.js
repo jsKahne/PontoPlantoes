@@ -3,7 +3,6 @@ import api from '../api/config';
 import { format } from 'date-fns';
 import './styles/plantoesAdmin.css';
 import { saveAs } from 'file-saver';
-import * as XLSX from 'xlsx';
 import Header from './header';
 import LogoA from './styles/img/icon-512.png';
 import { IoSearchOutline } from "react-icons/io5";
@@ -158,13 +157,15 @@ const PlantoesAdmin = () => {
 
   useEffect(() => {
     fetchUsuarios();
-  }, []);
+  }, //[] 
+);
 
   useEffect(() => {
     if (selectedUser) {
       fetchPlantoes();
     }
-  }, [selectedUser, selectedDateInicial, selectedDateFinal]);
+  }, //[selectedUser, selectedDateInicial, selectedDateFinal]
+);
 
   return (
     <div className='container-geral'>

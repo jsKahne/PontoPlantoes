@@ -18,7 +18,9 @@ const{
     getPlantoes,
     updatePlantao,
     downloadPlantaoXLSX,
-    downloadPlantaoMes
+    downloadPlantaoMes,
+    getPlantao24h,
+    confirmarPlantao
 } = require('../controllers/admin.js');
 
 const router = express.Router();
@@ -39,4 +41,7 @@ router.get('/getPlantoes', getPlantoes);
 router.put('/updatePlantoes', updatePlantao);
 router.get('/plantoes/download', downloadPlantaoXLSX);
 router.get('/plantoes/downloadMes', ensureAuth, downloadPlantaoMes);
+router.get('/plantoes/plantoes24', ensureAuth,getPlantao24h);
+router.post('/plantoes24/confirmar', confirmarPlantao);
+
 module.exports = router;

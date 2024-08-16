@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import api from '../api/config';
 import './styles/header.css'; // Importando o arquivo CSS
 import logo from './styles/img/logo-normal-verde.svg';
-import { IoMenuOutline } from "react-icons/io5";
 import configuracoes from './styles/img/gear-svgrepo-com.svg';
 import Menu from './Menu.js'
 

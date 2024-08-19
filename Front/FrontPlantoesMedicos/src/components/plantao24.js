@@ -116,7 +116,7 @@ function Plantoes24() {
             });
 
             // Atualiza o estado para incluir o plantão confirmado
-            setConfirmado(new Set([...confirmado, plantao.cd_pessoa_fisica]));
+            setConfirmado(new Set([...confirmado, plantao.cd_pessoa_fisica, plantao.mesAno]));
             fetchPlantoes();
         } catch (error) {
             if (error.response) {
@@ -184,7 +184,7 @@ function Plantoes24() {
                     plantoes.map((plantao, index) => (
                         <div 
                             key={index} 
-                            className={`plantao-card ${confirmado.has( plantao.situacao) ? 'confirmed' : ''}`}
+                            className={`plantao-card ${confirmado.has(plantao.cd_pessoa_fisica) ? 'confirmed' : ''}`}
                         >
                             <p>Nome: {plantao.nm_medico}</p>
                             <p>Tipo de Escala: {plantao.escala}</p>

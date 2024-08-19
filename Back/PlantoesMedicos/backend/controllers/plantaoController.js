@@ -530,6 +530,6 @@ async function iniciarPlantao(req, res) {
     getDadosAdicionarPlantao,
     logout,
     obterEscalasAtivas,
-    register
+    register  
   };
   

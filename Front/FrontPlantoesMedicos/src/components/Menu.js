@@ -64,8 +64,10 @@ const Menu = () => {
 
           <button className="button" onClick={() => handleNavigation('/admin')}>Painel administrador</button>
       <div className="line3"></div>
+      <button className="button" onClick={() => handleNavigation('/plantao24')}>Plantoes 24H</button>
+      <div className="line3"></div>
 
-        </>
+       </>
       )}
         <button className="logout" onClick={handleLogout}>
             <img src={logout} className='img-logout' alt="logout" />

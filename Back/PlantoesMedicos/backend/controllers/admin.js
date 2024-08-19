@@ -1,5 +1,6 @@
 const { getConnection } = require('../dbConfig');
 const XLSX = require('xlsx');
+//const format = require('date-fns');
 
 async function getUsers(req, res) {
     let connection;
@@ -326,11 +327,177 @@ WHERE
     }
   }
 }
+
+async function getPlantao24h(req, res) {
+  const { tipo_escala, mesAno } = req.query;
+
+  if (!tipo_escala || !mesAno) {
+      return res.status(400).json({ message: "Parâmetros necessários ausentes." });
+  }
+
+  let connection;
+  try {
+      connection = await getConnection();
+
+      const query = `
+         SELECT 
+            t.tipo_escala, 
+            t.dt_inicio, 
+            t.dt_fim, 
+            t.cd_pessoa_fisica, 
+            t.nm_medico, 
+            t.escala,
+            CASE 
+                WHEN m.cd_medico IS NOT NULL AND m.dt_inicial IS NOT NULL THEN 'Finalizado'
+                ELSE NULL
+            END AS status,
+            Obter_Dia_Semana(dt_inicio)
+         FROM 
+            fhsl_plantoes_app_tasy t
+         LEFT JOIN 
+            MEDICO_PLANTAO m
+         ON 
+            t.cd_pessoa_fisica = m.cd_medico 
+            AND to_char(t.dt_inicio,'dd/mm/yyyy hh24') = to_char(m.dt_inicial,'dd/mm/yyyy hh24')
+         WHERE 
+            t.tipo_escala = :tipo_escala
+            AND to_char(t.dt_inicio, 'mm/yyyy') = :mesAno
+      `;
+      const result = await connection.execute(query, { tipo_escala, mesAno });
+
+
+
+      if (result.rows.length === 0) {
+          return res.status(404).json({ message: "Nenhum plantão encontrado." });
+      }
+
+      const plantoes = result.rows.map(row => ({
+          tipo_escala: row[0],
+          dt_inicio: row[1],
+          dt_fim: row[2],
+          cd_pessoa_fisica: row[3],
+          nm_medico: row[4],
+          escala: row[5],
+          situacao: row[6],
+          dia_semana: row[7]
+      }));
+
+      res.json(plantoes);
+     
+  } catch (error) {
+      console.error('Erro ao buscar plantões 24h:', error);
+      res.status(500).json({ message: "Erro interno ao buscar plantões 24h." });
+  } finally {
+      if (connection) {
+          try {
+              await connection.close();
+          } catch (err) {
+              console.error('Erro ao fechar conexão:', err);
+          }
+      }
+  }
+}
+
+
+async function confirmarPlantao(req, res) {
+  const { tipo_escala, cd_medico, dt_inicio, dt_final } = req.body;
+
+  if (!tipo_escala || !cd_medico || !dt_inicio || !dt_final) {
+      return res.status(400).json({ message: "Parâmetros necessários ausentes." });
+  }
+
+  let connection;
+  try {
+      connection = await getConnection();
+
+      // Definindo os valores baseados no tipo de escala
+      let nr_Seq_tipo_plantao, nr_seq_regra_esp;
+      switch (tipo_escala) {
+          case 'OFT':
+              nr_Seq_tipo_plantao = 37;
+              nr_seq_regra_esp = 38;
+              break;
+          case 'CARD':
+              nr_Seq_tipo_plantao = 34;
+              nr_seq_regra_esp = 35;
+              break;
+          case 'PED':
+              nr_Seq_tipo_plantao = 12;
+              nr_seq_regra_esp = 30;
+              break;
+          default:
+              return res.status(400).json({ message: "Tipo de escala inválido." });
+      }
+
+      // Calculando dt_chamado (dt_inicial ajustado para 06:00:00)
+      // Formatando dt_inicio para o formato 'DD/MM/YYYY'
+      const query = `
+          INSERT INTO MEDICO_PLANTAO (
+              cd_estabelecimento, 
+              nr_sequencia, 
+              cd_medico, 
+              dt_chamado, 
+              dt_inicial_prev, 
+              dt_final_prev, 
+              dt_inicial, 
+              dt_final,
+              nr_Seq_tipo_plantao, 
+              nr_seq_regra_esp, 
+              dt_atualizacao, 
+              nm_usuario, 
+              qt_minuto
+          ) VALUES (
+              1, 
+              MEDICO_PLANTAO_SEQ.nextval, 
+              :cd_medico, 
+              TO_DATE(TO_CHAR(TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS') - INTERVAL '1' HOUR, 'DD/MM/YYYY') || ' 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_inicial_prev, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_final_prev, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS'), 
+              TO_DATE(:dt_final, 'DD/MM/YYYY HH24:MI:SS'),
+              :nr_Seq_tipo_plantao, 
+              :nr_seq_regra_esp, 
+              SYSDATE, 
+              'app', 
+              (TO_DATE(:dt_final, 'DD/MM/YYYY HH24:MI:SS') - TO_DATE(:dt_inicial, 'DD/MM/YYYY HH24:MI:SS')) * 24 * 60
+          )
+      `;
+
+      await connection.execute(query, {
+          cd_medico,
+          dt_inicial_prev: dt_inicio,
+          dt_final_prev: dt_final,
+          dt_inicial: dt_inicio,
+          dt_final: dt_final,
+          nr_Seq_tipo_plantao,
+          nr_seq_regra_esp
+      }, { autoCommit: true });
+
+      res.status(200).json({ message: "Plantão confirmado com sucesso." });
+  } catch (error) {
+      console.error('Erro ao confirmar plantão:', error);
+      res.status(500).json({ message: "Erro interno ao confirmar plantão." });
+  } finally {
+      if (connection) {
+          try {
+              await connection.close();
+          } catch (err) {
+              console.error('Erro ao fechar conexão:', err);
+          }
+      }
+  }
+}
+
+
+  
+
 module.exports = {
   getUsers,
   resetPassword,
   getPlantoes,
   updatePlantao,
   downloadPlantaoXLSX,
-  downloadPlantaoMes
+  downloadPlantaoMes,
+  getPlantao24h,
+  confirmarPlantao
 };

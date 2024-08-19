@@ -10,7 +10,7 @@ initialize();
 
 // Configurar CORS
 const corsOptions = {
-  origin: ['http://localhost'], //'http://10.2.0.93', 'http://plantoes.fhsl.org.br', 'https://10.2.0.93'],
+  origin: ['http://localhost'], //'http://10.2.0.93', 'http://plantoes.fhsl.org.br', 'https://10.2.0.93']
   credentials: true, // Permite o envio de cookies de autenticação (se houver)
 };
 
@@ -28,3 +28,4 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+

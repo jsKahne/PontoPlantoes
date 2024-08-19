@@ -1,0 +1,170 @@
+body {
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+<<<<<<< HEAD
+    color: #ffffff;
+}
+
+.msg-erro-plantao24h {
+    display: flex;
+    color: red;
+    justify-content: center;
+    text-decoration: underline;
+    margin-top: 10px;
+  }
+
+.filtro-pesquisa{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 10px;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    text-align: center; 
+=======
+    color: #6cbc84;
+    margin-top: 20px;
+}
+
+.plantao-card {
+    background-color: #444;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.plantao-card:hover {
+    background-color: #555;
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
+}
+
+button {
+    
+    background-color: #6cbc84;
+    border: none;
+    margin-left: 10px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #58a76b;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+input[type="month"] {
+    margin-left: 10px;
+    margin-top: 16px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 2px solid #6cbc84;
+    background-color: #444;
+    color: white;
+}
+
+<<<<<<< HEAD
+.selecao-plantao{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-plantoes{
+    display: flex;
+    border: solid;
+    border-width: 2px;
+    padding: 10px;
+    border-color: #6cbc84;
+    background-color:#444;
+    justify-content: center;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.selecao-escala{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.oftalmo24h{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.cardiaca24h{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pediatria24h{
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+.plantoes-list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.plantao-card {
+    border: solid;
+    border-width: 2px;
+    border-color: #6cbc84;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #444;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    transition: 0.4s;
+
+}
+
+.plantao-card:hover{
+    border-color: #6cbc84;
+    translate: 0 -10px;
+}
+=======
+.check-icon {
+    color: #6cbc84;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.plantao-card.confirmed .check-icon {
+    opacity: 1;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759

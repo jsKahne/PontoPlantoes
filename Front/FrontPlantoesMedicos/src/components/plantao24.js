@@ -3,7 +3,6 @@ import { format, parseISO, parse, isValid } from 'date-fns';
 import './styles/plantoes24.css';
 import Header from './header';
 import api from '../api/config';
-import { FaCheckCircle } from 'react-icons/fa';  // Importando o ícone de verificação
 
 function Plantoes24() {
     const [plantoes, setPlantoes] = useState([]);
@@ -202,7 +201,6 @@ function Plantoes24() {
                                     Confirmar
                                 </button>
                             )}
-                            <FaCheckCircle className="check-icon" />
                         </div>
                     ))
                 ) : (

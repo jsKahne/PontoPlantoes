@@ -3,6 +3,10 @@ import { format, parseISO, parse, isValid } from 'date-fns';
 import './styles/plantoes24.css';
 import Header from './header';
 import api from '../api/config';
+<<<<<<< HEAD
+=======
+import { FaCheckCircle } from 'react-icons/fa';  // Importando o ícone de verificação
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
 
 function Plantoes24() {
     const [plantoes, setPlantoes] = useState([]);
@@ -130,6 +134,7 @@ function Plantoes24() {
 
     return (
         <div>
+<<<<<<< HEAD
                         <Header />
             <h1>Consulta de Plantões 24h</h1>
 
@@ -139,11 +144,51 @@ function Plantoes24() {
 
             <label className="filtro-pesquisa">
                 Mês/Ano: 
+=======
+            <Header />
+            <h1>Consulta de Plantões 24h</h1>
+            <div className="escala-selection">
+                <label>
+                    <input
+                        type="radio"
+                        name="tipoEscala"
+                        value="OFT"
+                        checked={tipoEscala === 'OFT'}
+                        onChange={handleRadioChange}
+                    />
+                    Oftalmo
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="tipoEscala"
+                        value="CARD"
+                        checked={tipoEscala === 'CARD'}
+                        onChange={handleRadioChange}
+                    />
+                    Cirurgia Cardíaca
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="tipoEscala"
+                        value="PED"
+                        checked={tipoEscala === 'PED'}
+                        onChange={handleRadioChange}
+                    />
+                    Cirurgia Pediátrica
+                </label>
+            </div>
+
+            <label>
+                Mês/Ano:
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
                 <input
                     type="month"
                     value={dataMesAno}
                     onChange={handleDateChange}
                 />
+<<<<<<< HEAD
                 <button onClick={fetchPlantoes}>Consultar</button>
             </label>
                 <div className= "selecao-plantao">
@@ -182,6 +227,13 @@ function Plantoes24() {
                         </div>    
                     </div>
                 </div>
+=======
+            </label>
+
+            <button onClick={fetchPlantoes}>Consultar</button>
+
+            {erro && <p className="error-message">{erro}</p>}
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
 
             <div className="plantoes-list">
                 {plantoes.length > 0 ? (
@@ -201,6 +253,10 @@ function Plantoes24() {
                                     Confirmar
                                 </button>
                             )}
+<<<<<<< HEAD
+=======
+                            <FaCheckCircle className="check-icon" />
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
                         </div>
                     ))
                 ) : (

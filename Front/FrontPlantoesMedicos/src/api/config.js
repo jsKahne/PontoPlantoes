@@ -13,7 +13,11 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     //config.headers['Access-Control-Allow-Origin'] = 'http://plantoes.fhsl.org.br';
+<<<<<<< HEAD
     config.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000';
+=======
+    config.headers['Access-Control-Allow-Origin'] = 'http://localhost:81';
+>>>>>>> 7f59f00d25d6335341ef0187ad42e302bb7c9759
     return config;
   },
   (error) => {

@@ -354,7 +354,26 @@ input[type="checkbox"]:checked + .checkmark {
   border-radius: 4px;
 }
 
+.oftalmo24h{
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.cardiaca4h{
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.pediatria24h{
+  display: flex;
+  justify-content: flex-start;
+
+}
+
 .error-message {
+  display: flex;
   color: red;
   text-decoration: underline;
   margin-top: 5px;

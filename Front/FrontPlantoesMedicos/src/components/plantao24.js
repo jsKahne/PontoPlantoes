@@ -130,9 +130,11 @@ function Plantoes24() {
 
     return (
         <div>
-                        <Header />
+            <Header />
             <h1>Consulta de Plantões 24h</h1>
 
+            <div className='line-plantao24'></div>
+            
             <div>
                 {erro && <p className="msg-erro-plantao24h">{erro}</p>}
             </div>

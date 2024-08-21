@@ -5,6 +5,12 @@ h1, h2 {
   color: #ffffff;
 }
 
+.line-plantao {
+  width: 25%;
+  border-bottom: solid 2px #6cbc84;
+  margin: -10px auto 40px;
+}
+
 h3{
   color: #ffffff;
 }

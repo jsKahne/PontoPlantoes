@@ -203,6 +203,9 @@ const ListPlantoes = () => {
     <Header />  
         <div className="div-center">
         <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}> Plantões do Dia</h1>
+
+        <div className='line-plantao'></div>
+
         <div className='add-plantao-container'>
           <button className="add-plantao" onClick={handleAdicionarPlantao}>
             Adicionar Plantão

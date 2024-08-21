@@ -73,6 +73,9 @@ const PlantoesListagem = () => {
   return (
     <div className="user-list">
       <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Consulta de Plantões</h1>
+
+      <div className='line-plantao-consulta'></div>
+
       <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
         Data Inicial:
         <input

@@ -3,10 +3,10 @@ import api from '../api/config';
 import { format } from 'date-fns';
 import './styles/plantoesAdmin.css';
 import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
 import Header from './header';
 import LogoA from './styles/img/icon-512.png';
 import { IoSearchOutline } from "react-icons/io5";
-
 
 const PlantoesAdmin = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -21,7 +21,6 @@ const PlantoesAdmin = () => {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
 
   useEffect(() => {
-    // Definir a data inicial e final como o primeiro e o último dia do mês passado
     const now = new Date();
     const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
     const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
@@ -107,7 +106,7 @@ const PlantoesAdmin = () => {
         params: {
           mesAno: formattedMesAno,
         },
-        responseType: 'arraybuffer', // Importante para receber dados binários
+        responseType: 'arraybuffer',
       });
 
       const blob = new Blob([response.data], {
@@ -126,14 +125,6 @@ const PlantoesAdmin = () => {
 
   const handleUserClick = (usuario) => {
     setSelectedUser(usuario);
-    // Definir as datas como o primeiro e o último dia do mês passado, se não estiver definido
-    if (!selectedDateInicial || !selectedDateFinal) {
-      const now = new Date();
-      const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-      const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-      setSelectedDateInicial(format(firstDayLastMonth, 'yyyy-MM-dd'));
-      setSelectedDateFinal(format(lastDayLastMonth, 'yyyy-MM-dd'));
-    }
     setIsModalOpen(true);
   };
 
@@ -144,7 +135,9 @@ const PlantoesAdmin = () => {
   };
 
   const handleModalSubmit = () => {
-    fetchPlantoes();
+    if (selectedUser && selectedDateInicial && selectedDateFinal) {
+      fetchPlantoes();
+    }
   };
 
   const handleOpenModal2 = () => {
@@ -155,17 +148,16 @@ const PlantoesAdmin = () => {
     setIsModalOpen2(false);
   };
 
-  useEffect(() => {
-    fetchUsuarios();
-  }, //[] 
-);
+  const exportTableToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(plantoes);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Plantões');
+    XLSX.writeFile(wb, `plantoes_${format(new Date(), 'yyyy-MM-dd')}.xlsx`);
+  };
 
   useEffect(() => {
-    if (selectedUser) {
-      fetchPlantoes();
-    }
-  }, //[selectedUser, selectedDateInicial, selectedDateFinal]
-);
+    fetchUsuarios();
+  }, []);
 
   return (
     <div className='container-geral'>
@@ -181,7 +173,7 @@ const PlantoesAdmin = () => {
         <div className='users-found'>
           <div className='usuarios'>
             <div className='pesquisa'>
-              <label className="label">
+              <label className="teste">
                 <span className="icon">
                 <IoSearchOutline/>
                 </span>
@@ -199,7 +191,7 @@ const PlantoesAdmin = () => {
             </div>
             <div className='usuarios-encontrados'>
               {usuarios.length === 0 ? (
-                <p  className='not-found'>Nenhum usuário encontrado</p>
+                <p className='not-found'>Nenhum usuário encontrado</p>
               ) : (
                 <ul>
                   {usuarios.map((usuario) => (
@@ -223,48 +215,49 @@ const PlantoesAdmin = () => {
               <div className="modal-body">
                 <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
                   Data Inicial:
-                  <input
+                  <input className="data-inicio-filtro"
                     type="date"
                     value={selectedDateInicial}
                     onChange={(e) => setSelectedDateInicial(e.target.value)}
                   />
                 </label>
-                <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
+                <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}  >
                   Data Final:
-                  <input
+                  <input className="data-fim-filtro"
                     type="date"
                     value={selectedDateFinal}
                     onChange={(e) => setSelectedDateFinal(e.target.value)}
                   />
                 </label>
+                {erro && <p className='erro'>{erro}</p>}
               </div>
-              {erro && <p className="error-message">{erro}</p>}
+              
               <div className="modal-footer">
                 <button onClick={handleModalSubmit} className="btn-custom">Consultar</button>
+                <button onClick={exportTableToExcel} className="btn-custom">Baixar Tabela XLSX</button>
               </div>
 
               {plantoes.length > 0 && (
-                <div className="result-modal">
-                  <h3>Resultados Encontrados</h3>
+                <div className="plantao-results">
                   <div className="table-container">
-                    <table className="table">
+                    <table className="plantao-table">
                       <thead>
-                        <tr>
-                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Inicial Prevista</th>
-                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Final Prevista</th>
-                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Inicial</th>
-                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Data Final</th>
-                          <th style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>Situação</th>
+                        <tr className="tabela-filtro-datas">
+                          <th>Data Inicial Prevista</th>
+                          <th>Data Final Prevista</th>
+                          <th>Data Inicial</th>
+                          <th>Data Final</th>
+                          <th>Situação</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="tabela-filtro-plantoes">
                         {plantoes.map((plantao, index) => (
-                          <tr key={index}>
-                            <td>{plantao.dt_inicial_prev}</td>
-                            <td>{plantao.dt_final_prev}</td>
-                            <td>{plantao.dt_inicial}</td>
-                            <td>{plantao.dt_final}</td>
-                            <td>{plantao.situacao}</td>
+                          <tr className="tabela-filtro-campos" key={index}>
+                            <td className="tabela-filtro-inicialprev">{plantao.dt_inicial_prev}</td>
+                            <td className="tabela-filtro-finalprev">{plantao.dt_final_prev}</td>
+                            <td className="tabela-filtro-inicial">{plantao.dt_inicial}</td>
+                            <td className="tabela-filtro-final">{plantao.dt_final}</td>
+                            <td className="tabela-filtro-situacao">{plantao.situacao}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -281,10 +274,11 @@ const PlantoesAdmin = () => {
             <div className="modal-content">
               <button onClick={handleCloseModal2} className="close-button">×</button>
               <div className="modal-header">
-                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Selecione a Data</h2>
+                <h2 style={{ fontFamily: 'Arial, sans-serif', fontSize: '30px' }}>Download Mensal</h2>
               </div>
               <div className="modal-body">
                 <label style={{ fontFamily: 'Arial, sans-serif', fontSize: '18px' }}>
+                  Selecione o mês:
                   <input
                     type="month"
                     value={selectedDateMesAno}
@@ -293,11 +287,12 @@ const PlantoesAdmin = () => {
                 </label>
               </div>
               <div className="modal-footer">
-                <button onClick={handleDownload} className="btn-custom">Download Excel</button>
+                <button onClick={handleDownload} className="btn-custom">Baixar XLSX</button>
               </div>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
